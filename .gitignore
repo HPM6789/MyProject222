@@ -362,3 +362,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+PRN231_Project_SP23/.vs/PRN231_Project_SP23/v17/.suo
+*.cache
