@@ -1,62 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
-      "BusinessObjects/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BusinessObjects.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BusinessObjects.dll": {}
-        }
-      },
-      "DataAccess/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/DataAccess.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccess.dll": {}
-        }
-      },
-      "Repository/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/Repository.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Repository.dll": {}
-        }
-      }
-    }
+    "net6.0": {}
   },
-  "libraries": {
-    "BusinessObjects/1.0.0": {
-      "type": "project",
-      "path": "../BusinessObjects/BusinessObjects.csproj",
-      "msbuildProject": "../BusinessObjects/BusinessObjects.csproj"
-    },
-    "DataAccess/1.0.0": {
-      "type": "project",
-      "path": "../DataAccess/DataAccess.csproj",
-      "msbuildProject": "../DataAccess/DataAccess.csproj"
-    },
-    "Repository/1.0.0": {
-      "type": "project",
-      "path": "../Repository/Repository.csproj",
-      "msbuildProject": "../Repository/Repository.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net6.0": [
-      "BusinessObjects >= 1.0.0",
-      "DataAccess >= 1.0.0",
-      "Repository >= 1.0.0"
-    ]
+    "net6.0": []
   },
   "packageFolders": {
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\": {}
@@ -84,17 +33,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
-              "projectPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj"
-            },
-            "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj"
-            },
-            "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj": {
-              "projectPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
