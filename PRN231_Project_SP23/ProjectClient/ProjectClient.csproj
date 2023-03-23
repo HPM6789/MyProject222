@@ -10,4 +10,10 @@
     <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Teacher\" />
+    <Folder Include="Views\Student\" />
+  </ItemGroup>
+
 </Project>
