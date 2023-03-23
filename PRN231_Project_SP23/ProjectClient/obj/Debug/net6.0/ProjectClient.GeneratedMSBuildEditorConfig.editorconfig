@@ -9,37 +9,61 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ProjectClient
 build_property.RootNamespace = ProjectClient
-build_property.ProjectDir = F:\SE\08-PRN231\PRN231_Proejct2\PRN231_Project\PRN231_Project_SP23\ProjectClient\
+build_property.ProjectDir = F:\Semester 8\PRN231\PROJECT\PRN231_Project\PRN231_Project_SP23\ProjectClient\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = F:\SE\08-PRN231\PRN231_Proejct2\PRN231_Project\PRN231_Project_SP23\ProjectClient
+build_property.MSBuildProjectDirectory = F:\Semester 8\PRN231\PROJECT\PRN231_Project\PRN231_Project_SP23\ProjectClient
 build_property._RazorSourceGeneratorDebug = 
 
-[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Home/Index.cshtml]
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Home/Privacy.cshtml]
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Shared/Error.cshtml]
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Shared/_ValidationScriptsPartial.cshtml]
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/_ViewImports.cshtml]
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/_ViewStart.cshtml]
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Shared/_Layout.cshtml]
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-z1tq620ubu
+
+[F:/Semester 8/PRN231/PROJECT/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ez2gzt93g5
