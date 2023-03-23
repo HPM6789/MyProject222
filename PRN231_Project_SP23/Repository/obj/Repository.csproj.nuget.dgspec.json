@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj": {}
+    "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj": {}
   },
   "projects": {
-    "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
+    "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj",
-        "packagesPath": "C:\\Users\\PCDELL\\.nuget\\packages\\",
-        "outputPath": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\obj\\",
+        "projectPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj",
+        "packagesPath": "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\",
+        "outputPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PCDELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Minh Hieu Pham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,21 +79,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj": {
+    "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\PCDELL\\.nuget\\packages\\",
-        "outputPath": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\obj\\",
+        "projectPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\",
+        "outputPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PCDELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Minh Hieu Pham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -107,8 +107,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj"
+              "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj"
               }
             }
           }
@@ -138,21 +138,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj": {
+    "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj",
+        "projectUniqueName": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\PCDELL\\.nuget\\packages\\",
-        "outputPath": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\Repository\\obj\\",
+        "projectPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\",
+        "outputPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PCDELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Minh Hieu Pham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -166,11 +166,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj"
+              "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj"
               },
-              "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "F:\\Semester 8\\PRN231\\PROJECT\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj"
+              "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj"
               }
             }
           }
@@ -200,7 +200,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
