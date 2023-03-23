@@ -17,4 +17,10 @@
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\AllFiles\Materials\" />
+    <Folder Include="wwwroot\AllFiles\Assigments\" />
+    <Folder Include="wwwroot\AllFiles\SubmitAssignment\" />
+  </ItemGroup>
+
 </Project>
