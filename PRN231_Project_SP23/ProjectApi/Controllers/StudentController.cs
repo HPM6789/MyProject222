@@ -6,7 +6,7 @@ namespace ProjectApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [Authorize(Roles = "User")]
+    [Authorize(Roles = "Student")]
 
     public class StudentController : Controller
     {
@@ -15,6 +15,11 @@ namespace ProjectApi.Controllers
         public StudentController(IMapper mapper)
         {
             _mapper = mapper;
+        }
+        [HttpGet]
+        public IActionResult TestApi()
+        {
+            return Ok();
         }
     }
 }

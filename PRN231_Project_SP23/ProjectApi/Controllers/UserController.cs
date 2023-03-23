@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObjects.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Repository;
@@ -11,6 +12,7 @@ namespace ProjectApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [AllowAnonymous]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository = new UserRepository();

@@ -27,14 +27,13 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true
     };
 }) ;
-builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
 app.MapControllers();
 app.UseAuthentication();
-app.UseAuthorization();
 app.UseRouting();
+app.UseAuthorization();
 app.UseSwagger();
 app.UseSwaggerUI();
 
