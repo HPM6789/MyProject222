@@ -17,5 +17,8 @@ namespace Repository.Interfaces
         public User checkLogin(string email, string password);
         public string GetRoleByEmail(string email);
         public User GetUserByEmail(string email);
+        //temporary.FutureToDo: create IRoleRepository
+        List<Role> GetAllRoles();
+        Role GetRoleById(int rid);
     }
 }

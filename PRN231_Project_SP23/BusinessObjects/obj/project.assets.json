@@ -2420,11 +2420,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj",
+      "projectUniqueName": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj",
       "projectName": "BusinessObjects",
-      "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj",
+      "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj",
       "packagesPath": "C:\\Users\\PCDELL\\.nuget\\packages\\",
-      "outputPath": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\obj\\",
+      "outputPath": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PCDELL\\AppData\\Roaming\\NuGet\\NuGet.Config",

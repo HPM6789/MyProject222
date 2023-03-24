@@ -10279,11 +10279,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\ProjectClient\\ProjectClient.csproj",
+      "projectUniqueName": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\ProjectClient\\ProjectClient.csproj",
       "projectName": "ProjectClient",
-      "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\ProjectClient\\ProjectClient.csproj",
+      "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\ProjectClient\\ProjectClient.csproj",
       "packagesPath": "C:\\Users\\PCDELL\\.nuget\\packages\\",
-      "outputPath": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\ProjectClient\\obj\\",
+      "outputPath": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\ProjectClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PCDELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10300,8 +10300,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
-              "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj"
+            "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
+              "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj"
             }
           }
         }

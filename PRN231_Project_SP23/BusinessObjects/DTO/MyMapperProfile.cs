@@ -19,6 +19,7 @@ namespace BusinessObjects.DTO
             ;
             CreateMap<UserDto, User>()
                 ;
+            CreateMap<Role, RoleDto>();
             CreateMap<Material, MaterialDto>()
                 ;
         }

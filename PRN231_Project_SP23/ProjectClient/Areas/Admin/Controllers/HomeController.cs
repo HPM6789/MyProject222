@@ -1,6 +1,8 @@
 ﻿using BusinessObjects.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text.Json;
 
 namespace ProjectClient.Areas.Admin.Controllers
@@ -30,5 +32,50 @@ namespace ProjectClient.Areas.Admin.Controllers
             List<UserDto>? listUserDtos = JsonSerializer.Deserialize<List<UserDto>>(strData, options);
             return View(listUserDtos);
         }
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            //tao select item
+            ViewData["RoleId"] = await listRole();
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(UserDto userDto)
+        {
+            //tao item
+            ViewData["RoleId"] = await listRole();
+            if (!ModelState.IsValid)
+            {
+                ViewData["ErrorMessage"] = "Invalid ModelState";
+                return View(userDto);
+            }
+            HttpResponseMessage getData = await client.PostAsJsonAsync<UserDto>("api/User/PostUser", userDto);
+            //getData.EnsureSuccessStatusCode();
+            if (getData.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Create fail";
+                return View(userDto);
+            }
+        }
+
+        private async Task<SelectList> listRole()
+        {
+            //lay list category
+            UserApiUrl = "http://localhost:5000/api/Role/GetAllRoles";
+            HttpResponseMessage response = await client.GetAsync(UserApiUrl);
+            string strData = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            var roles = JsonSerializer.Deserialize<List<RoleDto>>(strData, options);
+            return new SelectList(roles, "RoleId", "RoleName");
+        }
+
     }
 }

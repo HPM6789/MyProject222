@@ -2354,11 +2354,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj",
+      "projectUniqueName": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj",
+      "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\PCDELL\\.nuget\\packages\\",
-      "outputPath": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\Repository\\obj\\",
+      "outputPath": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PCDELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2375,11 +2375,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
-              "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj"
+            "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj": {
+              "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj"
             },
-            "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj"
+            "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "F:\\Semester 8\\PRN231\\ProjectClone2\\PRN231_Project\\PRN231_Project_SP23\\DataAccess\\DataAccess.csproj"
             }
           }
         }
