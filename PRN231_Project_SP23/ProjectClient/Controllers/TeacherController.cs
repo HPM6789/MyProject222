@@ -17,7 +17,7 @@ namespace ProjectClient.Controllers
             TeacherApiUrl = "http://localhost:5000/api/Teacher";
         }
 
-        public async Task<IActionResult> GetAllCourses()
+        public async Task<IActionResult> ListIndex()
         {
             int teacherId = 0;
             var strData = Request.Cookies["jwtToken"];
@@ -27,14 +27,14 @@ namespace ProjectClient.Controllers
             foreach (var claim in jwtToken.Claims)
             {
                 var type = claim.Type;
-                if (claim.Type.Equals("http://schemas.microsoft.com/ws/2008/06/identity/claims/name"))
+                if (claim.Type.Equals("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"))
                 {
                     email = claim.Value;
                 }
             }
-            HttpResponseMessage responseMessage2 = await client.GetAsync(TeacherApiUrl + "/GetTeacherByEmail/" + teacherId.ToString());
+            HttpResponseMessage responseMessage2 = await client.GetAsync(TeacherApiUrl + "/GetTeacherByEmail/" + email);
             string strData2 = await responseMessage2.Content.ReadAsStringAsync();
-            User user = JsonSerializer.Deserialize<User>(strData2, new JsonSerializerOptions
+            UserDto user = JsonSerializer.Deserialize<UserDto>(strData2, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });

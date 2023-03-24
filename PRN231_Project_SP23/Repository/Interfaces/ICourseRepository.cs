@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface ITeacherRepository
+    public interface ICourseRepository
     {
         public IEnumerable<Course> GetAllCourseByTeacherId(int teacherId);
     }

@@ -13,9 +13,10 @@ namespace BusinessObjects.DTO
         public MyMapperProfile()
         {
             CreateMap<Course, CourseDto>()
-                .ForMember(dest => dest.Materials, act => act.MapFrom(src =>src.Materials.ToList()))
-                .ForMember(dest => dest.Assignments, act => act.MapFrom(src =>src.Assignments.ToList()))
-                .ForMember(dest => dest.Users, act => act.MapFrom(src =>src.Users.ToList()))
+                ;
+            CreateMap<User, UserDto>()
+                ;
+            CreateMap<Material, MaterialDto>()
                 ;
         }
     }

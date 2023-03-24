@@ -13,7 +13,7 @@ namespace ProjectApi.Controllers
     //[Authorize(Roles = "Teacher")]
     public class TeacherController : Controller
     {
-        private readonly ITeacherRepository _teacherRepository = new TeacherRepository();
+        private readonly ICourseRepository _teacherRepository = new CourseRepository();
         private readonly IUserRepository _userRepository = new UserRepository();
 
         private readonly IMapper _mapper;
@@ -41,8 +41,8 @@ namespace ProjectApi.Controllers
         public async Task<IActionResult> GetTeacherByEmail(string email)
         {
             User user = _userRepository.GetUserByEmail(email);
-
-            return Ok(user);
+            UserDto userDto = _mapper.Map<User,UserDto>(user);
+            return Ok(userDto);
         }
     }
 }

@@ -9,8 +9,8 @@ using Repository.Interfaces;
 
 namespace Repository
 {
-    public class TeacherRepository : ITeacherRepository
+    public class CourseRepository : ICourseRepository
     {
-        public IEnumerable<Course> GetAllCourseByTeacherId(int teacherId) => TeacherDao.GetAllCourseByTeacherId(teacherId);
+        public IEnumerable<Course> GetAllCourseByTeacherId(int teacherId) => CourseDao.GetAllCourseByTeacherId(teacherId);
     }
 }
