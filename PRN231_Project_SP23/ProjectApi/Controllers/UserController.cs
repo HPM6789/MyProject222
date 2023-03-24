@@ -28,7 +28,35 @@ namespace ProjectApi.Controllers
         }
         [HttpGet]
         public ActionResult<IEnumerable<UserDto>> GetAllUsers() => _userRepository.GetAllUsers().Select(_mapper.Map<User, UserDto>).ToList();
+        //[HttpGet("pid")]
+        //public ActionResult<UserDto> GetUserById(int uid) => (UserDto)_mapper.Map<UserDto>(_userRepository.GetUserById(uid));
 
+        [HttpPost]
+        public IActionResult PostUser(UserDto uDto)
+        {
+            //set product
+            User user = _mapper.Map<User>(uDto);
+            //if (_userRepository.FindDuplicateProduct(p.ProductName, p.CategoryId) is not null) return BadRequest();
+            _userRepository.InsertUser(user);
+            return NoContent();
+        }
+        [HttpDelete("uid")]
+        public IActionResult DeleteUser(int uid)
+        {
+            var user = _userRepository.GetUserById(uid);
+            if (user == null) return NotFound();
+            _userRepository.DeleteUser(user);
+            return NoContent();
+        }
+        [HttpPut("uid")]
+        public IActionResult UpdateProduct(int uid, UserDto uDto)
+        {
+            var PTmp = _userRepository.GetUserById(uid);
+            if (PTmp == null) return NotFound();
+            User u = _mapper.Map<User>(uDto);
+            _userRepository.UpdateProduct(u);
+            return NoContent();
+        }
         [HttpGet("{email}/{password}")]
         public IActionResult Login(string email, string password)
         {
