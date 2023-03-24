@@ -15,7 +15,8 @@ namespace BusinessObjects.DTO
             CreateMap<Course, CourseDto>()
                 ;
             CreateMap<User, UserDto>()
-                ;
+                .ForMember(dest => dest.RoleName, opt => opt.MapFrom(source => source.Role.RoleName));
+            ;
             CreateMap<UserDto, User>()
                 ;
             CreateMap<Material, MaterialDto>()

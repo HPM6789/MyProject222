@@ -3,6 +3,56 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+@model IEnumerable<BusinessObjects.DTO.UserDto>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>User Account Management</h1>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </th>
+                <td>
+                    @Html.ActionLink("Edit","Edit", new {pid = item.UserId}) |
+                    @Html.ActionLink("Details","Details", new {pid = item.UserId}) |
+                    @Html.ActionLink("Delete","Delete", new {pid = item.UserId})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-<h1>Admin Index</h1>
 

@@ -17,7 +17,7 @@ namespace DataAccess
             {
                 using (var context = new PRN231_ProjectContext())
                 {
-                    users = context.Users.ToList();
+                    users = context.Users.Include(x => x.Role).ToList();
                 }
             }
             catch (Exception ex)
