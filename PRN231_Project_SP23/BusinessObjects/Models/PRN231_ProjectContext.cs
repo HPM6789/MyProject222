@@ -128,6 +128,19 @@ namespace BusinessObjects.Models
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RoleId)
                     .HasConstraintName("FK__Users__RoleId__267ABA7A");
+
+                entity.HasMany(d => d.Courses)
+                    .WithMany(p => p.Users)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "UserCourse",
+                        l => l.HasOne<Course>().WithMany().HasForeignKey("CourseId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__UserCours__Cours__4222D4EF"),
+                        r => r.HasOne<User>().WithMany().HasForeignKey("UserId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__UserCours__UserI__412EB0B6"),
+                        j =>
+                        {
+                            j.HasKey("UserId", "CourseId").HasName("PK__UserCour__7B1A1B56669B4AF9");
+
+                            j.ToTable("UserCourse");
+                        });
             });
 
             OnModelCreatingPartial(modelBuilder);

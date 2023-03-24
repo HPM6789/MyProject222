@@ -49,9 +49,9 @@ namespace ProjectClient.Controllers
                     role = claim.Value;
                 }
             }
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
-            HttpResponseMessage httpResponse2 = await client.GetAsync("http://localhost:5000/api/Student/TestApi");
-            var test = httpResponse2.IsSuccessStatusCode;
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
+            //HttpResponseMessage httpResponse2 = await client.GetAsync("http://localhost:5000/api/Student/TestApi");
+            //var test = httpResponse2.IsSuccessStatusCode;
             return RedirectToAction("Index", "Home");
         }
 

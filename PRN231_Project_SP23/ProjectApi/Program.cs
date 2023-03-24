@@ -30,6 +30,7 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
+app.UseStaticFiles();
 app.MapControllers();
 app.UseAuthentication();
 app.UseRouting();

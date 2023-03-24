@@ -10,6 +10,7 @@ namespace BusinessObjects.Models
             Assignments = new HashSet<Assignment>();
             Materials = new HashSet<Material>();
             SubmitAssignments = new HashSet<SubmitAssignment>();
+            Courses = new HashSet<Course>();
         }
 
         public int UserId { get; set; }
@@ -22,5 +23,7 @@ namespace BusinessObjects.Models
         public virtual ICollection<Assignment> Assignments { get; set; }
         public virtual ICollection<Material> Materials { get; set; }
         public virtual ICollection<SubmitAssignment> SubmitAssignments { get; set; }
+
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

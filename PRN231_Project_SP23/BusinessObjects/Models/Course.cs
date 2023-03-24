@@ -9,6 +9,7 @@ namespace BusinessObjects.Models
         {
             Assignments = new HashSet<Assignment>();
             Materials = new HashSet<Material>();
+            Users = new HashSet<User>();
         }
 
         public int CourseId { get; set; }
@@ -16,5 +17,7 @@ namespace BusinessObjects.Models
 
         public virtual ICollection<Assignment> Assignments { get; set; }
         public virtual ICollection<Material> Materials { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }
