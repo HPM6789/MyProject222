@@ -34,6 +34,7 @@ namespace ProjectApi.Controllers
             foreach(var c in courses)
             {
                 courseDtos.Add(_mapper.Map<Course, CourseDto>(c));
+                
             }
             return Ok(courseDtos);
         }
