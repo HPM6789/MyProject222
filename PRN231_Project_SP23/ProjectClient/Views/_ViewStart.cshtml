@@ -16,7 +16,7 @@
         }
         if (role.Equals("Admin"))
         {
-            Layout = "_Layout";
+            Layout = "_LayoutAdmin";
         }
         else if (role.Equals("Teacher"))
         {
@@ -24,11 +24,11 @@
         }
         else if (role.Equals("Student"))
         {
-            //Layout = "_Layout";
+            Layout = "_LayoutStudent";
         }
         else
         {
-            Layout = null;
+            Layout = "_Layout";
         }
     } else
     {
