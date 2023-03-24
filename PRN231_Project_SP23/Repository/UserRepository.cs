@@ -16,5 +16,11 @@ namespace Repository
         public string GetRoleByEmail(string email) => UserDao.GetRoleByEmail(email);
 
         public User GetUserByEmail(string email) => UserDao.GetUserByEmail(email);
+        public void DeleteUser(User u) => UserDao.DeleteUser(u);
+        public List<User> GetAllUsers() => UserDao.getAllUsers();
+
+        public User GetUserById(int uId) => UserDao.FindUserById(uId);
+        public void InsertUser(User u) => UserDao.InsertUser(u);
+        public void UpdateProduct(User u) => UserDao.UpdateUser(u);
     }
 }
