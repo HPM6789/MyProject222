@@ -14,5 +14,7 @@ namespace Repository
         public User checkLogin(string email, string password) => UserDao.checkLogin(email, password);
 
         public string GetRoleByEmail(string email) => UserDao.GetRoleByEmail(email);
+
+        public User GetUserByEmail(string email) => UserDao.GetUserByEmail(email);
     }
 }

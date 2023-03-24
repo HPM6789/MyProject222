@@ -27,10 +27,11 @@ namespace ProjectApi.Controllers
         }
 
         [HttpGet("{email}/{password}")]
-        public IActionResult Login(string email, string password) {
+        public IActionResult Login(string email, string password)
+        {
 
             User u = _userRepository.checkLogin(email, password);
-            if(u == null)
+            if (u == null)
             {
                 return Unauthorized();
             }
@@ -58,5 +59,7 @@ namespace ProjectApi.Controllers
                 );
             return token;
         }
+
+       
     }
 }

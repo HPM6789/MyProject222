@@ -41,5 +41,22 @@ namespace DataAccess
             }
             return role;
         }
+
+        public static User GetUserByEmail(string email)
+        {
+            User user = new User();
+            try
+            {
+                using (var context = new PRN231_ProjectContext())
+                {
+                    user = context.Users.Where(u => u.Email.Equals(email)).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return user;
+        }
     }
 }

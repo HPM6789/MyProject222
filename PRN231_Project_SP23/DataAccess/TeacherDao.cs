@@ -17,10 +17,11 @@ namespace DataAccess
             {
                 using (var context = new PRN231_ProjectContext())
                 {
-                    var courses = context.Users.Include(u => u.Courses).Where(u => u.UserId == teacherId).Select(u => u.Courses).ToList();
+                    var user = context.Users.Where(u => u.UserId == teacherId).FirstOrDefault();
+                    var courses = context.Courses.Include(u => u.Users).Where(u => u.Users.Contains(user)).ToList();
                     foreach(var c in courses)
                     {
-                        list.Add((Course)c);
+                        list.Add(c);
                     }
                 }
             }catch (Exception ex) {

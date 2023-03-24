@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Repository.Interfaces;
 using Repository;
 using BusinessObjects.Models;
+using BusinessObjects.DTO;
 
 namespace ProjectApi.Controllers
 {
@@ -13,6 +14,7 @@ namespace ProjectApi.Controllers
     public class TeacherController : Controller
     {
         private readonly ITeacherRepository _teacherRepository = new TeacherRepository();
+        private readonly IUserRepository _userRepository = new UserRepository();
 
         private readonly IMapper _mapper;
 
@@ -28,8 +30,19 @@ namespace ProjectApi.Controllers
             {
                 return NotFound();
             }
+            List<CourseDto> courseDtos= new List<CourseDto>();
+            foreach(var c in courses)
+            {
+                courseDtos.Add(_mapper.Map<Course, CourseDto>(c));
+            }
+            return Ok(courseDtos);
+        }
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetTeacherByEmail(string email)
+        {
+            User user = _userRepository.GetUserByEmail(email);
 
-            return Ok(courses);
+            return Ok(user);
         }
     }
 }
