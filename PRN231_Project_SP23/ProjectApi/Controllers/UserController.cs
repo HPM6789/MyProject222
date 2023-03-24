@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessObjects.DTO;
 using BusinessObjects.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,8 @@ namespace ProjectApi.Controllers
             _mapper = mapper;
             _configuration = configuration;
         }
+        [HttpGet]
+        public ActionResult<IEnumerable<UserDto>> GetAllUsers() => _userRepository.GetAllUsers().Select(_mapper.Map<User, UserDto>).ToList();
 
         [HttpGet("{email}/{password}")]
         public IActionResult Login(string email, string password)
