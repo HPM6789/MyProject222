@@ -56,6 +56,10 @@ namespace BusinessObjects.Models
 
             modelBuilder.Entity<Course>(entity =>
             {
+                entity.Property(e => e.CourseCode)
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.CourseName)
                     .HasMaxLength(100)
                     .IsUnicode(false);

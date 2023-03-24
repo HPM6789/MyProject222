@@ -14,6 +14,7 @@ namespace BusinessObjects.Models
 
         public int CourseId { get; set; }
         public string? CourseName { get; set; }
+        public string? CourseCode { get; set; }
 
         public virtual ICollection<Assignment> Assignments { get; set; }
         public virtual ICollection<Material> Materials { get; set; }
