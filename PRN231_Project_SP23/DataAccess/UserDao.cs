@@ -34,7 +34,7 @@ namespace DataAccess
                 using (var context = new PRN231_ProjectContext())
                 {
                     u = context.Users
-                        //.Include(x => x.Category)
+                        .Include(x => x.Role)
                         .SingleOrDefault(x => x.UserId == uId);
                 }
             }

@@ -62,7 +62,54 @@ namespace ProjectClient.Areas.Admin.Controllers
                 return View(userDto);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int uid)
+        {
+            ViewData["RoleId"] = await listRole();
+            UserDto userDto = await getUserDTOById(uid);
+            return View(userDto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(UserDto userDto)
+        {
+            //tao item
+            ViewData["RoleId"] = await listRole();
+            if (!ModelState.IsValid)
+            {
+                ViewData["ErrorMessage"] = "ModelState is invalid";
+                return View(userDto);
+            }
+            HttpResponseMessage getData = await client.PutAsJsonAsync<UserDto>($"api/User/UpdateProduct/uid?uid={userDto.UserId}", userDto);
+            //getData.EnsureSuccessStatusCode();
+            if (getData.IsSuccessStatusCode)
+            {
+                //return Redirect($"Details?pid={userDto.ProductId}");
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Edit fail";
+                return View(userDto);
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int uid)
+        {
+            string message = "";
+            HttpResponseMessage response = await client.DeleteAsync(
+            $"api/User/DeleteUser/uid?uid={uid}");
 
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                message = "Delete fail";
+            }
+            return Content(message);
+        }
         private async Task<SelectList> listRole()
         {
             //lay list category
@@ -75,6 +122,29 @@ namespace ProjectClient.Areas.Admin.Controllers
             };
             var roles = JsonSerializer.Deserialize<List<RoleDto>>(strData, options);
             return new SelectList(roles, "RoleId", "RoleName");
+        }
+        private async Task<UserDto> getUserDTOById(int uid)
+        {
+            //
+            UserApiUrl = $"http://localhost:5000/api/User/GetUserById/uid?uid={uid}";
+            HttpResponseMessage response = await client.GetAsync(UserApiUrl);
+            string strData = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            //
+            //Deserialize dữ liệu
+            try
+            {
+                UserDto userDto = JsonSerializer.Deserialize<UserDto>(strData, options);
+                return userDto;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
 
     }

@@ -28,8 +28,8 @@ namespace ProjectApi.Controllers
         }
         [HttpGet]
         public ActionResult<IEnumerable<UserDto>> GetAllUsers() => _userRepository.GetAllUsers().Select(_mapper.Map<User, UserDto>).ToList();
-        //[HttpGet("pid")]
-        //public ActionResult<UserDto> GetUserById(int uid) => (UserDto)_mapper.Map<UserDto>(_userRepository.GetUserById(uid));
+        [HttpGet("uid")]
+        public ActionResult<UserDto> GetUserById(int uid) => (UserDto)_mapper.Map<UserDto>(_userRepository.GetUserById(uid));
 
         [HttpPost]
         public IActionResult PostUser(UserDto uDto)
