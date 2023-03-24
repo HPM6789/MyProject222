@@ -37,7 +37,11 @@ namespace ProjectClient.Controllers
             {
                 PropertyNameCaseInsensitive = true,
             };
-            //string tokenString = JsonSerializer.Deserialize<string>(strData);
+            var cookieOptions = new CookieOptions();
+            cookieOptions.Expires = DateTime.Now.AddMinutes(5);
+            Response.Cookies.Append("jwtToken", strData, cookieOptions);
+
+
             var jwtHandler = new JwtSecurityTokenHandler();
             var jwtToken = jwtHandler.ReadJwtToken(strData);
             string role = "";

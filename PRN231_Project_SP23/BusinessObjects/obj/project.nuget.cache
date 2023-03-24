@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dbOFQa7TyqWC4Ox27eGTnsFWDYKI5GKcqPREpiIe5NOs/+MG/5BE+WBzIsye2e7TpKjkWCZyGLoftWfEgD6o7w==",
+  "dgSpecHash": "TbGTranQOg9nofwEhbR1lqIBdC8V1ndUKrU4QywnaGv3+NvgaNZ0Z5MIChXeZiNfCWqzheb0cwyK8+qDIq4CwA==",
   "success": true,
   "projectFilePath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\BusinessObjects\\BusinessObjects.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.15\\microsoft.entityframeworkcore.design.6.0.15.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.15\\microsoft.entityframeworkcore.relational.6.0.15.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.15\\microsoft.entityframeworkcore.sqlserver.6.0.15.nupkg.sha512",
+    "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.15\\microsoft.entityframeworkcore.tools.6.0.15.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.1\\microsoft.extensions.configuration.6.0.1.nupkg.sha512",
