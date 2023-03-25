@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class CourseDao
     {
-        public static IEnumerable<Course> GetAllCourse()
+        public static List<Course> GetAllCourse()
         {
             List<Course> list = new List<Course>();
             try
@@ -38,7 +38,7 @@ namespace DataAccess
             {
                 using(var context = new PRN231_ProjectContext())
                 {
-                    c = context.Courses.Where(c => c.CourseId == id).FirstOrDefault();
+                    c = context.Courses.Include(c => c.Assignments).Include(u => u.Users).Where(c => c.CourseId == id).FirstOrDefault();
                 }
             }catch(Exception ex)
             {
@@ -85,9 +85,24 @@ namespace DataAccess
             {
                 using (var context = new PRN231_ProjectContext())
                 {
-                    var p1 = context.Courses.SingleOrDefault(c => c.CourseId == course.CourseId);
-                    context.Courses.Remove(p1);
-                    context.SaveChanges();
+                    using(var transaction = context.Database.BeginTransaction())
+                    {
+                        var c = context.Courses.Include(c => c.Users).Include(c => c.Assignments)
+                        .Include(c => c.Materials).SingleOrDefault(c => c.CourseId == course.CourseId);
+
+                        var userCourse = c.Users.ToList();
+                        userCourse.Clear();
+                        var assignmentCourse = c.Assignments.ToList();
+                        assignmentCourse.Clear();
+                        var materialCourse = c.Materials.ToList();
+                        materialCourse.Clear();
+                        context.Courses.Remove(c);
+
+                        if(context.SaveChanges() > 0)
+                        {
+                            transaction.Commit();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
