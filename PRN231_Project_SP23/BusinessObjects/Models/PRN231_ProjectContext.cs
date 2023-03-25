@@ -43,6 +43,8 @@ namespace BusinessObjects.Models
 
                 entity.Property(e => e.Path).IsUnicode(false);
 
+                entity.Property(e => e.RequiredDate).HasColumnType("datetime");
+
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.Assignments)
                     .HasForeignKey(d => d.CourseId)

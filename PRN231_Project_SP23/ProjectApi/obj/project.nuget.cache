@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "9UjSl/ZCAmRpye5vgOkSoxXeaUcoEwzqSVlLctYcoAgmjRmSNfyvcNzAcnIzF9E+JLsbI8R5csTYh2gPEfG7cQ==",
+  "dgSpecHash": "R05IzVt14sekJcUmqoig8I/UvBvhq4dYbl6Ja0rCaZN1owZM/2IIudvfy3dPr1Y0g9JgP4cfJ8ZoTC0x2csawQ==",
   "success": true,
   "projectFilePath": "F:\\SE\\08-PRN231\\PRN231_Proejct2\\PRN231_Project\\PRN231_Project_SP23\\ProjectApi\\ProjectApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.15\\microsoft.aspnetcore.authentication.jwtbearer.6.0.15.nupkg.sha512",
+    "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
@@ -52,6 +53,7 @@
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.27.0\\system.identitymodel.tokens.jwt.6.27.0.nupkg.sha512",
+    "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\system.runtime.caching\\4.7.0\\system.runtime.caching.4.7.0.nupkg.sha512",
     "C:\\Users\\Minh Hieu Pham\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

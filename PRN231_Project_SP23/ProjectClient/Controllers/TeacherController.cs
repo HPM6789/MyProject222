@@ -1,5 +1,6 @@
 ﻿using BusinessObjects.DTO;
 using BusinessObjects.Models;
+using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json;
@@ -46,6 +47,48 @@ namespace ProjectClient.Controllers
                 PropertyNameCaseInsensitive = true,
             });
             return View(courses);
+        }
+
+        public async Task<IActionResult> ListMaterialOfCourse(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + "/GetAllMaterialsByCourse/" + id.ToString());
+            string materialJson = await response.Content.ReadAsStringAsync();
+            List<MaterialDto> materialDtos = JsonSerializer.Deserialize<List<MaterialDto>>(materialJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            });
+            ViewData["courseId"] = id;
+            return View(materialDtos);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadMaterial(IFormFile material, int courseId)
+        {
+            int uploaderId = 0;
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (!string.IsNullOrEmpty(strData))
+            {
+                var jwtHandler = new JwtSecurityTokenHandler();
+                var jwtToken = jwtHandler.ReadJwtToken(strData);
+
+                foreach (var claim in jwtToken.Claims)
+                {
+                    var type = claim.Type;
+                    if (claim.Type.Equals("nameid"))
+                    {
+                        uploaderId = int.Parse(claim.Value);
+                    }
+                }
+            }
+            UploadMaterialViewModel uploadMaterialViewModel = new UploadMaterialViewModel();
+            uploadMaterialViewModel.Material = material;
+            uploadMaterialViewModel.CourseId = courseId;
+            uploadMaterialViewModel.UploaderId = uploaderId;
+            uploadMaterialViewModel.MaterialPath = "";
+            uploadMaterialViewModel.MaterialName = "";
+
+            //HttpRequestMessage response = await client.
+            return RedirectToAction("ListMaterialOfCourse", "Teacher");
         }
     }
 }

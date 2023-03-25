@@ -1,8 +1,7 @@
 ﻿@using System.IdentityModel.Tokens.Jwt;
 @{
-    Layout = "_Layout";
     var strData = Context.Request.Cookies["jwtToken"];
-    if(strData != null)
+    if (!string.IsNullOrEmpty(strData))
     {
         var jwtHandler = new JwtSecurityTokenHandler();
         var jwtToken = jwtHandler.ReadJwtToken(strData);
@@ -33,6 +32,6 @@
         }
     } else
     {
-        Layout = null;
+        Layout = "_Layout";
     }
 }

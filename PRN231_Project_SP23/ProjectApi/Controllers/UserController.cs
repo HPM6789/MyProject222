@@ -69,6 +69,7 @@ namespace ProjectApi.Controllers
             string role = _userRepository.GetRoleByEmail(email);
             var authClaims = new List<Claim>
                 {
+                    new Claim(JwtRegisteredClaimNames.NameId, u.UserId.ToString()),
                     new Claim(ClaimTypes.Name, u.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(ClaimTypes.Role, role)

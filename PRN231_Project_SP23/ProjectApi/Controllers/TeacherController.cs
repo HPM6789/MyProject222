@@ -5,6 +5,7 @@ using Repository.Interfaces;
 using Repository;
 using BusinessObjects.Models;
 using BusinessObjects.DTO;
+using BusinessObjects.ViewModel;
 
 namespace ProjectApi.Controllers
 {
@@ -15,15 +16,17 @@ namespace ProjectApi.Controllers
     {
         private readonly ICourseRepository _teacherRepository = new CourseRepository();
         private readonly IUserRepository _userRepository = new UserRepository();
-
+        private readonly IMaterialRepository _materialRepository= new MaterialRepository();
+        private string BaseMaterailUrl = "";
         private readonly IMapper _mapper;
 
         public TeacherController(IMapper mapper)
         {
             _mapper = mapper;
+            BaseMaterailUrl = "../ProjectApi/wwwroot/AllFiles/Materials";
         }
         [HttpGet("{teacherId}")]
-        public async Task<IActionResult> GetAllCourses(int teacherId)
+        public IActionResult GetAllCourses(int teacherId)
         {
             List<Course> courses = (List<Course>)_teacherRepository.GetAllCourseByTeacherId(teacherId);
             if(courses == null || courses.Count == 0)
@@ -39,11 +42,32 @@ namespace ProjectApi.Controllers
             return Ok(courseDtos);
         }
         [HttpGet("{email}")]
-        public async Task<IActionResult> GetTeacherByEmail(string email)
+        public IActionResult GetTeacherByEmail(string email)
         {
             User user = _userRepository.GetUserByEmail(email);
             UserDto userDto = _mapper.Map<User,UserDto>(user);
             return Ok(userDto);
+        }
+
+        [HttpGet("{courseId}")]
+        public IActionResult GetAllMaterialsByCourse(int courseId)
+        {
+            List<Material> materials = (List<Material>)_materialRepository.GetMaterialsByCourseId(courseId);
+            List<MaterialDto> materialDtos = new List<MaterialDto>();
+            foreach(var material in materials)
+            {
+                materialDtos.Add(_mapper.Map<Material,MaterialDto>(material));
+            }
+            return Ok(materialDtos);
+        }
+
+        [HttpPost]
+        public IActionResult UploadMaterial ([FromForm] UploadMaterialViewModel uploadMaterialViewModel)
+        {
+            uploadMaterialViewModel.MaterialPath = BaseMaterailUrl;
+            _materialRepository.SaveMaterial(uploadMaterialViewModel.Material, uploadMaterialViewModel.MaterialPath,
+                uploadMaterialViewModel.CourseId, uploadMaterialViewModel.UploaderId, uploadMaterialViewModel.MaterialName);
+            return Ok();
         }
     }
 }

@@ -21,6 +21,8 @@ namespace BusinessObjects.DTO
                 ;
             CreateMap<Role, RoleDto>();
             CreateMap<Material, MaterialDto>()
+                .ForMember(dest => dest.UploaderName, opt => opt.MapFrom(src => src.Uploader.Fullname))
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Course.CourseName))
                 ;
         }
     }

@@ -13,6 +13,8 @@ namespace BusinessObjects.DTO
         public string? Path { get; set; }
         public int? CourseId { get; set; }
         public int? UploaderId { get; set; }
+        public string UploaderName { get; set; }
+        public string CourseName { get; set; }
 
     }
 }

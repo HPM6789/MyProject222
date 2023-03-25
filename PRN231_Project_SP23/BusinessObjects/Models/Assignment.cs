@@ -15,6 +15,7 @@ namespace BusinessObjects.Models
         public string? Path { get; set; }
         public int? CourseId { get; set; }
         public int? UploaderId { get; set; }
+        public DateTime? RequiredDate { get; set; }
 
         public virtual Course? Course { get; set; }
         public virtual User? Uploader { get; set; }
