@@ -23,6 +23,13 @@ namespace ProjectClient.Controllers
         {
             return View();
         }
+        [Route("logout")]
+
+        public async Task<IActionResult> Logout()
+        {
+            Response.Cookies.Delete("jwtToken");
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)
