@@ -3,6 +3,7 @@ using BusinessObjects.Models;
 using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using System.Text.Json;
 
 namespace ProjectClient.Controllers
@@ -49,7 +50,7 @@ namespace ProjectClient.Controllers
             return View(courses);
         }
 
-        public async Task<IActionResult> ListMaterialOfCourse(int id)
+        public async Task<IActionResult> ListMaterialOfCourse(int id, string msg)
         {
             HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + "/GetAllMaterialsByCourse/" + id.ToString());
             string materialJson = await response.Content.ReadAsStringAsync();
@@ -58,6 +59,7 @@ namespace ProjectClient.Controllers
                 PropertyNameCaseInsensitive = true,
             });
             ViewData["courseId"] = id;
+            ViewData["msg"] = msg;
             return View(materialDtos);
         }
 
@@ -80,15 +82,31 @@ namespace ProjectClient.Controllers
                     }
                 }
             }
-            UploadMaterialViewModel uploadMaterialViewModel = new UploadMaterialViewModel();
-            uploadMaterialViewModel.Material = material;
-            uploadMaterialViewModel.CourseId = courseId;
-            uploadMaterialViewModel.UploaderId = uploaderId;
-            uploadMaterialViewModel.MaterialPath = "";
-            uploadMaterialViewModel.MaterialName = "";
+            if(material == null || material.Length < 0)
+            {
+                return RedirectToAction("ListMaterialOfCourse", "Teacher", new { id = courseId });
+            }
 
-            //HttpRequestMessage response = await client.
-            return RedirectToAction("ListMaterialOfCourse", "Teacher");
+            using var stream = material.OpenReadStream();
+            var streamContent = new StreamContent(stream);
+            var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync());
+
+            var content = new MultipartFormDataContent();
+            content.Add(fileContent,"file", material.FileName);
+            content.Add(new StringContent(courseId.ToString()), "courseId");
+            content.Add(new StringContent(uploaderId.ToString()), "uploaderId");
+
+            var postTask = await client.PostAsync(TeacherApiUrl + "/UploadMaterial", content);
+            string msg = "";
+            if (postTask.IsSuccessStatusCode)
+            {
+                msg = "success";
+            }
+            else
+            {
+                msg = "failed";
+            }
+            return RedirectToAction("ListMaterialOfCourse", "Teacher", new {id = courseId, msg = msg});
         }
     }
 }

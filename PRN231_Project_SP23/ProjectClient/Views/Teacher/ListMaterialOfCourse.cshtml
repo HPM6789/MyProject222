@@ -7,10 +7,20 @@
 }
 
 <h1>ListMaterialOfCourse</h1>
-
+@if(ViewData["msg"] != null)
+{
+    if (ViewData["msg"] == "success")
+    {
+        <p class="text-success">Upload Successfully</p>
+    }
+    if (ViewData["msg"] == "failed")
+    {
+        <p class="text-danger">Upload Failed</p>
+    }
+}
 <p>
     <form asp-controller="Teacher" asp-action="UploadMaterial" enctype="multipart/form-data" method="post">
-        <input type="file" name="material" />
+        <input class="form-control" type="file" name="material" />
         <input type="hidden" name="courseId" value="@ViewData["courseId"]" />
         <input type="submit" value="Upload" class="btn btn-primary"/>
     </form>
@@ -19,10 +29,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MaterialName)
+                @Html.DisplayNameFor(model => model.MaterialId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Path)
+                @Html.DisplayNameFor(model => model.MaterialName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CourseName)
@@ -37,10 +47,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.MaterialName)
+                @Html.DisplayFor(modelItem => item.MaterialId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Path)
+                @Html.DisplayFor(modelItem => item.MaterialName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CourseName)
