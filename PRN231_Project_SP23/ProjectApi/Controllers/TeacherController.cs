@@ -74,5 +74,17 @@ namespace ProjectApi.Controllers
                 uploadMaterialViewModel.CourseId, uploadMaterialViewModel.UploaderId, uploadMaterialViewModel.MaterialName);
             return Ok();
         }
+
+        [HttpDelete("{materialId}")]
+        public IActionResult DeleteMaterial(int materialId)
+        {
+            var material = _materialRepository.GetMaterialById(materialId);
+            if (System.IO.File.Exists(material.Path + "/" + material.MaterialName))
+            {
+                System.IO.File.Delete(material.Path + "/" + material.MaterialName);
+            }
+            _materialRepository.DeleteMaterial(materialId);
+            return Ok();
+        }
     }
 }

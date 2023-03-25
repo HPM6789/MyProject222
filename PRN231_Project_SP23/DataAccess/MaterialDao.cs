@@ -63,6 +63,24 @@ namespace DataAccess
             }
         }
 
+        public static void DeleteMaterial(int materialId)
+        {
+            using (var context = new PRN231_ProjectContext())
+            {
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    var material = context.Materials.Where(m => m.MaterialId == materialId).FirstOrDefault();
+                    context.Materials.Remove(material);
+                    if(context.SaveChanges() > 0)
+                    {
+                        
+                        transaction.Commit();
+                        
+                    }
+                }
+            }
+        }
+
         public static Material GetMaterialById(int materialId)
         {
             Material material = null;

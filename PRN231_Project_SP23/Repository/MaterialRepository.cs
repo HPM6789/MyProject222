@@ -12,6 +12,8 @@ namespace Repository
 {
     public class MaterialRepository : IMaterialRepository
     {
+        public void DeleteMaterial(int materialId) => MaterialDao.DeleteMaterial(materialId);
+
         public Material GetMaterialById(int materialId) => MaterialDao.GetMaterialById(materialId);
 
         public IEnumerable<Material> GetMaterialsByCourseId(int courseId) => MaterialDao.GetMaterialsByCourseId(courseId);

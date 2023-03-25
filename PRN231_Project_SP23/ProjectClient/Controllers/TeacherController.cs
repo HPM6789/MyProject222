@@ -108,5 +108,12 @@ namespace ProjectClient.Controllers
             }
             return RedirectToAction("ListMaterialOfCourse", "Teacher", new {id = courseId, msg = msg});
         }
+
+        public async Task<IActionResult> DeleteMaterial(int materialId, int courseId)
+        {
+            var deleteTask = await client.DeleteAsync(TeacherApiUrl + "/DeleteMaterial/" + materialId.ToString());
+
+            return RedirectToAction("ListMaterialOfCourse", "Teacher", new { id = courseId });
+        }
     }
 }
