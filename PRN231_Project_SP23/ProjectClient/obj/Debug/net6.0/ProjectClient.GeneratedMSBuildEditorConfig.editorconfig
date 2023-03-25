@@ -96,6 +96,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Student/ListCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxMaXN0Q291cnNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Student/ListMaterialOfCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxMaXN0TWF0ZXJpYWxPZkNvdXJzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Views/Teacher/ListIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxMaXN0SW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

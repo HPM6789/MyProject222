@@ -10,5 +10,6 @@ namespace Repository.Interfaces
     public interface ICourseRepository
     {
         public IEnumerable<Course> GetAllCourseByTeacherId(int teacherId);
+        public IEnumerable<Course> GetAllCourseByStudentId(int studentId);
     }
 }

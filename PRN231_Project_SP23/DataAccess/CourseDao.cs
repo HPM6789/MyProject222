@@ -29,5 +29,27 @@ namespace DataAccess
             }
             return list;
         }
+
+        public static IEnumerable<Course> GetAllCourseByStudentId(int studentId)
+        {
+            List<Course> list = new List<Course>();
+            try
+            {
+                using (var context = new PRN231_ProjectContext())
+                {
+                    var user = context.Users.Where(u => u.UserId == studentId).FirstOrDefault();
+                    var courses = context.Courses.Include(c => c.Assignments).Include(u => u.Users).Where(u => u.Users.Contains(user)).ToList();
+                    foreach (var c in courses)
+                    {
+                        list.Add(c);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
+            return list;
+        }
     }
 }

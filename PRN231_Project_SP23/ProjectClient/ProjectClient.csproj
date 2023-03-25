@@ -16,7 +16,6 @@
     <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Areas\Teacher\Models\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Student\" />
   </ItemGroup>
 
   <ItemGroup>

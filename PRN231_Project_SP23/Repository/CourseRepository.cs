@@ -11,6 +11,8 @@ namespace Repository
 {
     public class CourseRepository : ICourseRepository
     {
+        public IEnumerable<Course> GetAllCourseByStudentId(int studentId) => CourseDao.GetAllCourseByStudentId(studentId);
+
         public IEnumerable<Course> GetAllCourseByTeacherId(int teacherId) => CourseDao.GetAllCourseByTeacherId(teacherId);
     }
 }

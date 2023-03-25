@@ -1,29 +1,13 @@
-﻿@using System.IdentityModel.Tokens.Jwt;
-@model IEnumerable<BusinessObjects.DTO.MaterialDto>
+﻿@model IEnumerable<BusinessObjects.DTO.MaterialDto>
 
 @{
     ViewData["Title"] = "ListMaterialOfCourse";
-   
 }
 
 <h1>ListMaterialOfCourse</h1>
-@if(ViewData["msg"] != null)
-{
-    if (ViewData["msg"].Equals("success"))
-    {
-        <p class="text-success">Upload Successfully</p>
-    }
-    if (ViewData["msg"].Equals("failed"))
-    {
-        <p class="text-danger">Upload Failed</p>
-    }
-}
+
 <p>
-    <form asp-controller="Teacher" asp-action="UploadMaterial" enctype="multipart/form-data" method="post">
-        <input class="form-control" type="file" name="material" />
-        <input type="hidden" name="courseId" value="@ViewData["courseId"]" />
-        <input type="submit" value="Upload" class="btn btn-primary"/>
-    </form>
+    
 </p>
 <table class="table">
     <thead>
@@ -59,9 +43,7 @@
                 @Html.DisplayFor(modelItem => item.UploaderName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MaterialId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MaterialId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MaterialId">Delete</a>
+                    <a asp-action="DownloadMaterial" asp-controller="Student" asp-route-id="@item.MaterialId">Download</a>
             </td>
         </tr>
 }

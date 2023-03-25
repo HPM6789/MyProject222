@@ -62,5 +62,21 @@ namespace DataAccess
                 }
             }
         }
+
+        public static Material GetMaterialById(int materialId)
+        {
+            Material material = null;
+            try
+            {
+                using (var context = new PRN231_ProjectContext())
+                {
+                    material = context.Materials.Where(m => m.MaterialId == materialId).FirstOrDefault();
+                }
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return material;
+        }
     }
 }
