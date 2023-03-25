@@ -64,7 +64,7 @@ namespace ProjectClient.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadMaterial(IFormFile material, int courseId)
+        public async Task<IActionResult> UploadMaterial(List<IFormFile> materials, int courseId)
         {
             int uploaderId = 0;
             var strData = HttpContext.Request.Cookies["jwtToken"];
@@ -82,17 +82,21 @@ namespace ProjectClient.Controllers
                     }
                 }
             }
-            if(material == null || material.Length < 0)
+            if(materials == null || materials.Count <= 0)
             {
                 return RedirectToAction("ListMaterialOfCourse", "Teacher", new { id = courseId });
             }
 
-            using var stream = material.OpenReadStream();
-            var streamContent = new StreamContent(stream);
-            var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync());
 
             var content = new MultipartFormDataContent();
-            content.Add(fileContent,"file", material.FileName);
+
+            foreach(var material in materials)
+            {
+                using var stream = material.OpenReadStream();
+                var streamContent = new StreamContent(stream);
+                var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync());
+                content.Add(fileContent, "files", material.FileName);
+            }
             content.Add(new StringContent(courseId.ToString()), "courseId");
             content.Add(new StringContent(uploaderId.ToString()), "uploaderId");
 

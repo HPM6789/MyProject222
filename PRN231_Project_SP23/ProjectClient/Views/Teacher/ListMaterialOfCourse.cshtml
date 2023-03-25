@@ -20,7 +20,7 @@
 }
 <p>
     <form asp-controller="Teacher" asp-action="UploadMaterial" enctype="multipart/form-data" method="post">
-        <input class="form-control" type="file" name="material" />
+        <input class="form-control" type="file" name="materials" multiple />
         <input type="hidden" name="courseId" value="@ViewData["courseId"]" />
         <input type="submit" value="Upload" class="btn btn-primary"/>
     </form>

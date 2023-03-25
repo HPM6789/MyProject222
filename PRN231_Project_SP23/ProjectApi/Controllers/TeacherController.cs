@@ -62,16 +62,20 @@ namespace ProjectApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult UploadMaterial ([FromForm] IFormFile file, [FromForm] int courseId, [FromForm] int uploaderId)
+        public IActionResult UploadMaterial ([FromForm] List<IFormFile> files, [FromForm] int courseId, [FromForm] int uploaderId)
         {
-            UploadMaterialViewModel uploadMaterialViewModel = new UploadMaterialViewModel();
-            uploadMaterialViewModel.Material = file;
-            uploadMaterialViewModel.CourseId = courseId;
-            uploadMaterialViewModel.UploaderId = uploaderId;
-            uploadMaterialViewModel.MaterialPath = BaseMaterailUrl;
-            uploadMaterialViewModel.MaterialName = file.FileName;
-            _materialRepository.SaveMaterial(uploadMaterialViewModel.Material, uploadMaterialViewModel.MaterialPath,
-                uploadMaterialViewModel.CourseId, uploadMaterialViewModel.UploaderId, uploadMaterialViewModel.MaterialName);
+            foreach( var file in files)
+            {
+                UploadMaterialViewModel uploadMaterialViewModel = new UploadMaterialViewModel();
+                uploadMaterialViewModel.Material = file;
+                uploadMaterialViewModel.CourseId = courseId;
+                uploadMaterialViewModel.UploaderId = uploaderId;
+                uploadMaterialViewModel.MaterialPath = BaseMaterailUrl;
+                uploadMaterialViewModel.MaterialName = file.FileName;
+                _materialRepository.SaveMaterial(uploadMaterialViewModel.Material, uploadMaterialViewModel.MaterialPath,
+                    uploadMaterialViewModel.CourseId, uploadMaterialViewModel.UploaderId, uploadMaterialViewModel.MaterialName);
+            }
+            
             return Ok();
         }
 
