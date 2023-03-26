@@ -1,4 +1,5 @@
-﻿using BusinessObjects.ViewModel;
+﻿using BusinessObjects.Models;
+using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,7 @@ namespace Repository.Interfaces
     public interface IAssignmentRespository
     {
         void SaveAssignment(UploadAssignmentViewModel uploadAssignmentViewModel);
+        IEnumerable<Assignment> GetAssignmentsByCourseId(int courseId);
+        Assignment GetAssignmentsByAssId(int assId);
     }
 }

@@ -3,6 +3,7 @@ using BusinessObjects.DTO;
 using BusinessObjects.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Win32;
 using Repository;
 using Repository.Interfaces;
@@ -17,6 +18,7 @@ namespace ProjectApi.Controllers
     {
         private readonly ICourseRepository _courseRepository = new CourseRepository();
         private readonly IMaterialRepository _materialRepository = new MaterialRepository();
+        private readonly IAssignmentRespository _assignmentRespository = new AssignmentRepository();
         private readonly IUserRepository _userRepository = new UserRepository();
 
         private readonly IMapper _mapper;
@@ -70,5 +72,23 @@ namespace ProjectApi.Controllers
             }
             return Ok(materialDtos);
         }
+        [HttpGet("{courseId}")]
+        public ActionResult<IEnumerable<AssigmentDto>> GetAssignmentsByCourse(int courseId)
+        => _assignmentRespository.GetAssignmentsByCourseId(courseId).Select(_mapper.Map<Assignment, AssigmentDto>).ToList();
+        [HttpGet("{id}")]
+        public async Task<IActionResult> DownloadAssignmentByassId(int id)
+        {
+            AssigmentDto assigmentDto = (AssigmentDto)_mapper.Map<AssigmentDto>(_assignmentRespository.GetAssignmentsByAssId(id));
+            //var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", filename);
+            var filepath = assigmentDto.Path;
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(filepath, out var contenttype))
+            {
+                contenttype = "application/octet-stream";
+            }
+            var bytes = await System.IO.File.ReadAllBytesAsync(filepath);
+            return File(bytes, contenttype, Path.GetFileName(filepath));
+        }
+
     }
 }

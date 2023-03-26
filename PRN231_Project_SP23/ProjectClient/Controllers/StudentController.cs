@@ -68,5 +68,17 @@ namespace ProjectClient.Controllers
             var fileName = response.Content.Headers.ContentDisposition.FileName.Trim('\"');
             return File(stream, contentType, fileName);
         }
+        public async Task<IActionResult> ListAssignmentsByCourse(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync(StudentApiUrl + "/GetAssignmentsByCourse/" + id.ToString());
+            var stream = await response.Content.ReadAsStreamAsync();
+            string strData = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            List<AssigmentDto>? assigmentDtos = JsonSerializer.Deserialize<List<AssigmentDto>>(strData, options);
+            return View(assigmentDtos);
+        }
     }
 }
