@@ -1,4 +1,5 @@
-﻿using BusinessObjects.ViewModel;
+﻿using BusinessObjects.Models;
+using BusinessObjects.ViewModel;
 using DataAccess;
 using Repository.Interfaces;
 using System;
@@ -11,6 +12,12 @@ namespace Repository
 {
     public class SubmitAssignmentRespository : ISubmitAssignmentRespository
     {
+        public SubmitAssignment GetSubmitAssignmentsById(int id)
+        => SubmitAssignmentDao.GetSubmitAssignmentsById(id);
+
+        public IEnumerable<SubmitAssignment> ListSubmitAssignmentByAssId(int assId)
+         => SubmitAssignmentDao.ListSubmitAssignmentByAssId(assId);
+
         public void SubmitAssignment(SubmitAssignmentViewModel model)
          => SubmitAssignmentDao.SubmitAssignment(model);
     }

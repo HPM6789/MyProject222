@@ -6,6 +6,7 @@ using Repository;
 using BusinessObjects.Models;
 using BusinessObjects.DTO;
 using BusinessObjects.ViewModel;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace ProjectApi.Controllers
 {
@@ -18,6 +19,7 @@ namespace ProjectApi.Controllers
         private readonly IUserRepository _userRepository = new UserRepository();
         private readonly IMaterialRepository _materialRepository= new MaterialRepository();
         private readonly IAssignmentRespository _assignmentRespository = new AssignmentRepository();
+        private readonly ISubmitAssignmentRespository _submitAssignmentRespository = new SubmitAssignmentRespository();
         private string BaseMaterailUrl = "";
         private readonly IMapper _mapper;
 
@@ -101,5 +103,23 @@ namespace ProjectApi.Controllers
          [HttpGet("{teacherId}/{courseId}")]
         public ActionResult<IEnumerable<AssigmentDto>> ListAssignmentByCourse(int teacherId,int courseId)
         => _assignmentRespository.ListAssignmentByTeacherAndCourse(teacherId,courseId).Select(_mapper.Map<Assignment, AssigmentDto>).ToList();
+
+        [HttpGet("{assId}")]
+        public ActionResult<IEnumerable<SubmitAssignmentDto>> ListSubmitAssignmentByCourse(int assId)
+        => _submitAssignmentRespository.ListSubmitAssignmentByAssId(assId).Select(_mapper.Map<SubmitAssignment, SubmitAssignmentDto>).ToList();
+        [HttpGet("{id}")]
+        public async Task<IActionResult> DownloadSubmitAssignmentById(int id)
+        {
+            SubmitAssignmentDto assigmentDto = (SubmitAssignmentDto)_mapper.Map<SubmitAssignmentDto>(_submitAssignmentRespository.GetSubmitAssignmentsById(id));
+            //var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", filename);
+            var filepath = assigmentDto.Path;
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(filepath, out var contenttype))
+            {
+                contenttype = "application/octet-stream";
+            }
+            var bytes = await System.IO.File.ReadAllBytesAsync(filepath);
+            return File(bytes, contenttype, Path.GetFileName(filepath));
+        }
     }
 }

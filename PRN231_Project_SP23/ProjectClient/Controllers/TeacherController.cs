@@ -170,5 +170,18 @@ namespace ProjectClient.Controllers
             List<AssigmentDto> assigmentDtos = JsonSerializer.Deserialize<List<AssigmentDto>>(strData, options);
             return View(assigmentDtos);
         }
+
+        public async Task<IActionResult> ListSubmitAssignmentByAssId(int assId)
+        {
+            HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + $"/ListSubmitAssignmentByCourse/{assId}");
+            var stream = await response.Content.ReadAsStreamAsync();
+            string strData = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            List<SubmitAssignmentDto> subAssigmentDtos = JsonSerializer.Deserialize<List<SubmitAssignmentDto>>(strData, options);
+            return View(subAssigmentDtos);
+        }
     }
 }

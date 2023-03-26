@@ -1,5 +1,6 @@
 ﻿using BusinessObjects.Models;
 using BusinessObjects.ViewModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,22 @@ namespace DataAccess
                 }
             }
         }
+        public static IEnumerable<SubmitAssignment> ListSubmitAssignmentByAssId(int assId)
+        {
+            List<SubmitAssignment> list = new List<SubmitAssignment>();
+            try
+            {
+                using (var context = new PRN231_ProjectContext())
+                {
+                    list = context.SubmitAssignments.Include(m => m.Uploader).Include(m => m.Assignment).Where(a => a.Assignment.AssignmentId == assId).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
         private static String addAssFileToAPILocal(SubmitAssignmentViewModel model)
         {
             model.IsResponse = true;
@@ -58,6 +75,22 @@ namespace DataAccess
             model.IsSuccess = true;
             model.Message = "File upload successfully";
             return fileNameWithPath;
+        }
+        public static SubmitAssignment GetSubmitAssignmentsById(int id)
+        {
+            SubmitAssignment subAss = new SubmitAssignment();
+            try
+            {
+                using (var context = new PRN231_ProjectContext())
+                {
+                    subAss = context.SubmitAssignments.Include(m => m.Uploader).Include(m => m.Assignment).Where(a => a.SubmitAssignmentId == id).SingleOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return subAss;
         }
     }
 }

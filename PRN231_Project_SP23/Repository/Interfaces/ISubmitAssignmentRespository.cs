@@ -1,4 +1,5 @@
-﻿using BusinessObjects.ViewModel;
+﻿using BusinessObjects.Models;
+using BusinessObjects.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace Repository.Interfaces
      public interface ISubmitAssignmentRespository
     {
         void SubmitAssignment(SubmitAssignmentViewModel submitAssignmentViewModel);
+        IEnumerable<SubmitAssignment> ListSubmitAssignmentByAssId(int assId);
+        SubmitAssignment GetSubmitAssignmentsById(int id);
     }
 }

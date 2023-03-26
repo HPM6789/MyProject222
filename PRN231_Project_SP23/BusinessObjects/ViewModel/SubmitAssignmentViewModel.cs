@@ -10,7 +10,7 @@ namespace BusinessObjects.ViewModel
     public class SubmitAssignmentViewModel : ReponseModel
     {
             public IFormFile SubmitFile { get; set; }
-            public int SubmitAssignmentId { get; set; }
+            public int? SubmitAssignmentId { get; set; }
             public string? SubmitAssignmentName { get; set; }
             public int? UploaderId { get; set; }
             public int? AssignmentId { get; set; }

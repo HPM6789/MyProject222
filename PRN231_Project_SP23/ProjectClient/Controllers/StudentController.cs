@@ -81,13 +81,29 @@ namespace ProjectClient.Controllers
             List<AssigmentDto> assigmentDtos = JsonSerializer.Deserialize<List<AssigmentDto>>(strData, options);
             return View(assigmentDtos);
         }
-        public async Task<IActionResult> SubmitAssignment(int assid, int studentId)
+        public IActionResult SubmitAssignment(int assid)
         {
+            int uploaderId = 0;
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (!string.IsNullOrEmpty(strData))
+            {
+                var jwtHandler = new JwtSecurityTokenHandler();
+                var jwtToken = jwtHandler.ReadJwtToken(strData);
+
+                foreach (var claim in jwtToken.Claims)
+                {
+                    var type = claim.Type;
+                    if (claim.Type.Equals("nameid"))
+                    {
+                        uploaderId = int.Parse(claim.Value);
+                    }
+                }
+            }
             SubmitAssignmentViewModel model = new SubmitAssignmentViewModel();
             model.AssignmentId = assid;
-            model.UploaderId = studentId;
+            model.UploaderId = uploaderId;
             return View(model);
         }
-        
+
     }
 }

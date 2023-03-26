@@ -21,8 +21,15 @@ namespace BusinessObjects.DTO
                 ;
             CreateMap<ViewModel.UploadAssignmentViewModel, AssigmentDto>()
                 ;
-            CreateMap<Assignment, AssigmentDto>().ForMember(dest => dest.TeacherName, opt => opt.MapFrom(source => source.Uploader.Fullname));
+            CreateMap<Assignment, AssigmentDto>()
+                .ForMember(dest => dest.TeacherName, opt => opt.MapFrom(source => source.Uploader.Fullname));
             CreateMap<AssigmentDto, Assignment>();
+            CreateMap<SubmitAssignment, SubmitAssignmentDto>()
+               .ForMember(dest => dest.AssignmentName, opt => opt.MapFrom(source => source.Assignment.AssignmentName))
+               .ForMember(dest => dest.StudentName, opt => opt.MapFrom(source => source.Uploader.Fullname))
+               ;
+            CreateMap<SubmitAssignmentDto, SubmitAssignment>()
+             ;
             CreateMap<Role, RoleDto>();
             CreateMap<Material, MaterialDto>()
                 .ForMember(dest => dest.UploaderName, opt => opt.MapFrom(src => src.Uploader.Fullname))

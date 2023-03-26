@@ -45,7 +45,7 @@
                     @Html.DisplayFor(modelItem => item.TeacherName)
                 </td>
                 <td>
-                    <a asp-action="ShowAllSubmitAssignment" asp-controller="Teacher" asp-route-assId="@item.AssignmentId">Show all student submit</a>
+                    <a asp-action="ListSubmitAssignmentByAssId" asp-controller="Teacher" asp-route-assId="@item.AssignmentId">Show all student submit</a>
                 </td>
             </tr>
         }
