@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessObjects.DTO;
 using BusinessObjects.Models;
+using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
@@ -19,6 +20,7 @@ namespace ProjectApi.Controllers
         private readonly ICourseRepository _courseRepository = new CourseRepository();
         private readonly IMaterialRepository _materialRepository = new MaterialRepository();
         private readonly IAssignmentRespository _assignmentRespository = new AssignmentRepository();
+        private readonly ISubmitAssignmentRespository _submitAssignmentRespository = new SubmitAssignmentRespository();
         private readonly IUserRepository _userRepository = new UserRepository();
 
         private readonly IMapper _mapper;
@@ -89,6 +91,11 @@ namespace ProjectApi.Controllers
             var bytes = await System.IO.File.ReadAllBytesAsync(filepath);
             return File(bytes, contenttype, Path.GetFileName(filepath));
         }
-
+        [HttpPost]
+        public IActionResult submitAssignment([FromForm] SubmitAssignmentViewModel model)
+        {
+            _submitAssignmentRespository.SubmitAssignment(model);
+            return Ok("Submit Sucessfully");
+        }
     }
 }

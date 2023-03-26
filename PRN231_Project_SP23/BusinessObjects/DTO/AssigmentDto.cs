@@ -14,5 +14,6 @@ namespace BusinessObjects.DTO
         public int? CourseId { get; set; }
         public int? UploaderId { get; set; }
         public String? TeacherName { get; set; }
+        public DateTime? RequiredDate { get; set; }
     }
 }

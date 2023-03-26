@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.DTO;
+using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json;
@@ -77,8 +78,16 @@ namespace ProjectClient.Controllers
             {
                 PropertyNameCaseInsensitive = true,
             };
-            List<AssigmentDto>? assigmentDtos = JsonSerializer.Deserialize<List<AssigmentDto>>(strData, options);
+            List<AssigmentDto> assigmentDtos = JsonSerializer.Deserialize<List<AssigmentDto>>(strData, options);
             return View(assigmentDtos);
         }
+        public async Task<IActionResult> SubmitAssignment(int assid, int studentId)
+        {
+            SubmitAssignmentViewModel model = new SubmitAssignmentViewModel();
+            model.AssignmentId = assid;
+            model.UploaderId = studentId;
+            return View(model);
+        }
+        
     }
 }

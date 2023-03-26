@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.AssignmentName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CourseId)
+                @Html.DisplayNameFor(model => model.RequiredDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TeacherName)
@@ -38,13 +38,14 @@
                     @Html.DisplayFor(modelItem => item.AssignmentName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CourseId)
+                    @Html.DisplayFor(modelItem => item.RequiredDate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TeacherName)
                 </td>
                 <td>
-                    <a href="http://localhost:5000/api/Student/DownloadAssignmentByassId/@item.AssignmentId">DownloadAss</a>
+                    <a href="http://localhost:5000/api/Student/DownloadAssignmentByassId/@item.AssignmentId">DownloadAss</a> |
+                    <a asp-action="SubmitAssignment" asp-controller="Student" asp-route-studentId="@item.UploaderId" asp-route-assid="@item.AssignmentId">Submit Assignments</a>
                 </td>
             </tr>
         }
