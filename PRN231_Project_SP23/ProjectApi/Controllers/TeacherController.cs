@@ -17,6 +17,7 @@ namespace ProjectApi.Controllers
         private readonly ICourseRepository _teacherRepository = new CourseRepository();
         private readonly IUserRepository _userRepository = new UserRepository();
         private readonly IMaterialRepository _materialRepository= new MaterialRepository();
+        private readonly IAssignmentRespository _assignmentRespository = new AssignmentRepository();
         private string BaseMaterailUrl = "";
         private readonly IMapper _mapper;
 
@@ -88,6 +89,12 @@ namespace ProjectApi.Controllers
                 System.IO.File.Delete(material.Path + "/" + material.MaterialName);
             }
             _materialRepository.DeleteMaterial(materialId);
+            return Ok();
+        }
+        [HttpPost]
+        public IActionResult UploadAssignment([FromForm] UploadAssignmentViewModel uploadAssignmentViewModel)
+        {
+            _assignmentRespository.SaveAssignment(uploadAssignmentViewModel);
             return Ok();
         }
     }

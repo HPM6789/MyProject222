@@ -2,6 +2,7 @@
 using BusinessObjects.Models;
 using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Text.Json;
@@ -118,6 +119,45 @@ namespace ProjectClient.Controllers
             var deleteTask = await client.DeleteAsync(TeacherApiUrl + "/DeleteMaterial/" + materialId.ToString());
 
             return RedirectToAction("ListMaterialOfCourse", "Teacher", new { id = courseId });
+        }
+        [HttpGet]
+        public async Task<IActionResult> UploadAssignment()
+        {
+
+            int uploaderId = 0;
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (!string.IsNullOrEmpty(strData))
+            {
+                var jwtHandler = new JwtSecurityTokenHandler();
+                var jwtToken = jwtHandler.ReadJwtToken(strData);
+
+                foreach (var claim in jwtToken.Claims)
+                {
+                    var type = claim.Type;
+                    if (claim.Type.Equals("nameid"))
+                    {
+                        uploaderId = int.Parse(claim.Value);
+                    }
+                }
+            }
+            // co uploaderId
+            //tao item
+            ViewData["CourseId"] = await listCourseByUploaderId(uploaderId);
+
+            UploadAssignmentViewModel model = new UploadAssignmentViewModel();
+            model.UploaderId = 1;
+            return View(model);
+        }
+        private async Task<SelectList> listCourseByUploaderId(int uploaderId)
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync(TeacherApiUrl + "/GetAllCourses/" + uploaderId.ToString());
+            string strData = await responseMessage.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            var courses = JsonSerializer.Deserialize<List<CourseDto>>(strData, options);
+            return new SelectList(courses, "CourseId", "CourseName");
         }
     }
 }

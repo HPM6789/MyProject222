@@ -19,6 +19,8 @@ namespace BusinessObjects.DTO
             ;
             CreateMap<UserDto, User>()
                 ;
+            CreateMap<ViewModel.UploadAssignmentViewModel, AssigmentDto>()
+                ;
             CreateMap<Role, RoleDto>();
             CreateMap<Material, MaterialDto>()
                 .ForMember(dest => dest.UploaderName, opt => opt.MapFrom(src => src.Uploader.Fullname))
