@@ -78,6 +78,22 @@ namespace DataAccess
             }
             return list;
         }
+        public static IEnumerable<Assignment> ListAssignmentByTeacherAndCourse(int teacherId,int courseId)
+        {
+            List<Assignment> list = new List<Assignment>();
+            try
+            {
+                using (var context = new PRN231_ProjectContext())
+                {
+                    list = context.Assignments.Include(m => m.Course).Include(m => m.Uploader).Where(a => a.UploaderId == teacherId && a.Course.CourseId == courseId).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
         public static Assignment GetAssignmentsByAssId(int assId)
         {
             Assignment assignment = new Assignment();

@@ -97,5 +97,9 @@ namespace ProjectApi.Controllers
             _assignmentRespository.SaveAssignment(uploadAssignmentViewModel);
             return Ok();
         }
+        
+         [HttpGet("{teacherId}/{courseId}")]
+        public ActionResult<IEnumerable<AssigmentDto>> ListAssignmentByCourse(int teacherId,int courseId)
+        => _assignmentRespository.ListAssignmentByTeacherAndCourse(teacherId,courseId).Select(_mapper.Map<Assignment, AssigmentDto>).ToList();
     }
 }

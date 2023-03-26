@@ -13,6 +13,8 @@ namespace Repository.Interfaces
     {
         void SaveAssignment(UploadAssignmentViewModel uploadAssignmentViewModel);
         IEnumerable<Assignment> GetAssignmentsByCourseId(int courseId);
+        IEnumerable<Assignment> ListAssignmentByTeacherAndCourse(int teacherId, int courseId);
         Assignment GetAssignmentsByAssId(int assId);
+
     }
 }

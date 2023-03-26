@@ -48,6 +48,7 @@ namespace ProjectClient.Controllers
             {
                 PropertyNameCaseInsensitive = true,
             });
+            ViewData["teacherId"] = teacherId;
             return View(courses);
         }
 
@@ -123,7 +124,6 @@ namespace ProjectClient.Controllers
         [HttpGet]
         public async Task<IActionResult> UploadAssignment()
         {
-
             int uploaderId = 0;
             var strData = HttpContext.Request.Cookies["jwtToken"];
             if (!string.IsNullOrEmpty(strData))
@@ -143,9 +143,8 @@ namespace ProjectClient.Controllers
             // co uploaderId
             //tao item
             ViewData["CourseId"] = await listCourseByUploaderId(uploaderId);
-
             UploadAssignmentViewModel model = new UploadAssignmentViewModel();
-            model.UploaderId = 1;
+            model.UploaderId = uploaderId;
             return View(model);
         }
         private async Task<SelectList> listCourseByUploaderId(int uploaderId)
@@ -158,6 +157,18 @@ namespace ProjectClient.Controllers
             };
             var courses = JsonSerializer.Deserialize<List<CourseDto>>(strData, options);
             return new SelectList(courses, "CourseId", "CourseName");
+        }
+        public async Task<IActionResult> ListAssignmentByCourse(int tid, int cid)
+        {
+            HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + $"/ListAssignmentByCourse/{tid}/{cid}");
+            var stream = await response.Content.ReadAsStreamAsync();
+            string strData = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            List<AssigmentDto> assigmentDtos = JsonSerializer.Deserialize<List<AssigmentDto>>(strData, options);
+            return View(assigmentDtos);
         }
     }
 }

@@ -30,7 +30,7 @@
             </td>
             <td>
                     <a asp-action="ListMaterialOfCourse" asp-route-id="@item.CourseId">Materials</a> |
-                
+                    <a asp-action="ListAssignmentByCourse" asp-route-tid="@ViewData["teacherId"]" asp-route-cid="@item.CourseId">Teacher List Assignment</a> |
             </td>
         </tr>
 }

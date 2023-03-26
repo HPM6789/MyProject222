@@ -18,5 +18,8 @@ namespace Repository
 
         public Assignment GetAssignmentsByAssId(int assId)
         => AssignmentDao.GetAssignmentsByAssId(assId);
+
+        public IEnumerable<Assignment> ListAssignmentByTeacherAndCourse(int teacherId, int courseId)
+         => AssignmentDao.ListAssignmentByTeacherAndCourse(teacherId,courseId);
     }
 }
