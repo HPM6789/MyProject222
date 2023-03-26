@@ -16,6 +16,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = F:\SE\08-PRN231\PRN231_Proejct2\PRN231_Project\PRN231_Project_SP23\ProjectClient
 build_property._RazorSourceGeneratorDebug = 
 
+[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Courses/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Courses/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Courses/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Courses/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Courses/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/SE/08-PRN231/PRN231_Proejct2/PRN231_Project/PRN231_Project_SP23/ProjectClient/Areas/Admin/Views/Home/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

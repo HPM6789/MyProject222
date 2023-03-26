@@ -71,7 +71,17 @@ namespace ProjectApi.Controllers
             {
                 return NotFound();
             }
+            var materialCourse = c.Materials.Where(a => a.CourseId == courseId).ToList();
+            List<string> mPaths = c.Materials.Select(m => m.Path + "/" + m.MaterialName).ToList();
+            foreach (var m in mPaths)
+            {
+                if (System.IO.File.Exists(m))
+                {
+                    System.IO.File.Delete(m);
+                }
+            }
             _courseRepository.DeleteCourse(c);
+            
             return Ok();
         }
     }

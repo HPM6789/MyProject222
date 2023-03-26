@@ -44,7 +44,14 @@ namespace DataAccess
                             UploaderId = uploaderId
                         };
                         context.Materials.Add(newMaterial);
-                        string materialpath2 = Path.Combine(materialPath, materialName);
+                        string ext = Path.GetExtension(materialName);
+                        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(materialName);
+                        newMaterial.MaterialName = fileNameWithoutExtension + "_" + Guid.NewGuid().ToString() + ext;
+                        string materialpath2 = Path.Combine(materialPath, newMaterial.MaterialName);
+                        while (System.IO.File.Exists(materialpath2))
+                        {
+                            materialpath2 = Path.Combine(materialPath, fileNameWithoutExtension + "_" + Guid.NewGuid().ToString() + ext);
+                        }
                         if (context.SaveChanges() > 0)
                         {
                             transaction.Commit();

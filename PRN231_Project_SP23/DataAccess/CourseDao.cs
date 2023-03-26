@@ -38,7 +38,8 @@ namespace DataAccess
             {
                 using(var context = new PRN231_ProjectContext())
                 {
-                    c = context.Courses.Include(c => c.Assignments).Include(u => u.Users).Where(c => c.CourseId == id).FirstOrDefault();
+                    c = context.Courses.Include(c => c.Assignments).Include(u => u.Users)
+                        .Include(c => c.Materials).Where(c => c.CourseId == id).FirstOrDefault();
                 }
             }catch(Exception ex)
             {
@@ -91,17 +92,28 @@ namespace DataAccess
                         .Include(c => c.Materials).SingleOrDefault(c => c.CourseId == course.CourseId);
 
                         var userCourse = c.Users.ToList();
-                        userCourse.Clear();
-                        var assignmentCourse = c.Assignments.ToList();
-                        assignmentCourse.Clear();
-                        var materialCourse = c.Materials.ToList();
-                        materialCourse.Clear();
-                        context.Courses.Remove(c);
-
-                        if(context.SaveChanges() > 0)
+                        foreach(var uc in userCourse)
                         {
+                            c.Users.Remove(uc);
+                        }
+                        var assignmentCourse = context.Assignments.Where(a => a.CourseId == course.CourseId).ToList();
+                        foreach(var ac in assignmentCourse)
+                        {
+                            context.Assignments.Remove(ac);
+                        }
+                        var materialCourse = c.Materials.Where(a => a.CourseId == course.CourseId).ToList();
+                        foreach (var mc in materialCourse)
+                        {
+                            context.Materials.Remove(mc);
+                        }
+                        context.Courses.Remove(c);
+                        
+                        if (context.SaveChanges() > 0)
+                        {
+                            
                             transaction.Commit();
                         }
+                        
                     }
                 }
             }
