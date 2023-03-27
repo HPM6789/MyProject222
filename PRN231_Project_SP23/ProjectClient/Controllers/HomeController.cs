@@ -34,5 +34,11 @@ namespace ProjectClient.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> ErrorCode(System.Net.HttpStatusCode statusCodes)
+        {
+            string status = statusCodes.ToString();
+            return View("ErrorCode", status);
+        }
     }
 }

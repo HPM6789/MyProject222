@@ -12,7 +12,7 @@ namespace ProjectApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    //[Authorize(Roles = "Teacher")]
+    [Authorize(Roles = "Teacher")]
     public class TeacherController : Controller
     {
         private readonly ICourseRepository _teacherRepository = new CourseRepository();

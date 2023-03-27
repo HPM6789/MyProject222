@@ -2,6 +2,7 @@
 using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http.Headers;
 using System.Text.Json;
 
 namespace ProjectClient.Controllers
@@ -20,7 +21,11 @@ namespace ProjectClient.Controllers
         public async Task<IActionResult> ListCourse()
         {
             int studentId = 0;
-            var strData = Request.Cookies["jwtToken"];
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var jwtHandler = new JwtSecurityTokenHandler();
             var jwtToken = jwtHandler.ReadJwtToken(strData);
             string email = "";
@@ -32,8 +37,15 @@ namespace ProjectClient.Controllers
                     email = claim.Value;
                 }
             }
-
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             HttpResponseMessage responseMessage2 = await client.GetAsync(StudentApiUrl + "/GetStudentByEmail/" + email);
+            if (!responseMessage2.IsSuccessStatusCode)
+            {
+                if (responseMessage2.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = responseMessage2.StatusCode });
+                }
+            }
             string strData2 = await responseMessage2.Content.ReadAsStringAsync();
             UserDto user = JsonSerializer.Deserialize<UserDto>(strData2, new JsonSerializerOptions
             {
@@ -41,6 +53,13 @@ namespace ProjectClient.Controllers
             });
             studentId = user.UserId;
             HttpResponseMessage responseMessage = await client.GetAsync(StudentApiUrl + "/GetAllCourses/" + studentId.ToString());
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                if (responseMessage.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = responseMessage.StatusCode });
+                }
+            }
             string courseJson = await responseMessage.Content.ReadAsStringAsync();
             List<CourseDto> courses = JsonSerializer.Deserialize<List<CourseDto>>(courseJson, new JsonSerializerOptions
             {
@@ -51,7 +70,20 @@ namespace ProjectClient.Controllers
 
         public async Task<IActionResult> ListMaterialOfCourse(int id)
         {
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             HttpResponseMessage response = await client.GetAsync(StudentApiUrl + "/GetAllMaterialsByCourse/" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             string materialJson = await response.Content.ReadAsStringAsync();
             List<MaterialDto> materialDtos = JsonSerializer.Deserialize<List<MaterialDto>>(materialJson, new JsonSerializerOptions
             {
@@ -63,7 +95,20 @@ namespace ProjectClient.Controllers
 
         public async Task<IActionResult> DownloadMaterial(int id)
         {
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             HttpResponseMessage response = await client.GetAsync(StudentApiUrl + "/DowloadMaterial/" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             var stream = await response.Content.ReadAsStreamAsync();
             var contentType = response.Content.Headers.ContentType.ToString();
             var fileName = response.Content.Headers.ContentDisposition.FileName.Trim('\"');
@@ -71,7 +116,20 @@ namespace ProjectClient.Controllers
         }
         public async Task<IActionResult> ListAssignmentsByCourse(int id)
         {
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData2))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             HttpResponseMessage response = await client.GetAsync(StudentApiUrl + "/GetAssignmentsByCourse/" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             var stream = await response.Content.ReadAsStreamAsync();
             string strData = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions
@@ -85,6 +143,10 @@ namespace ProjectClient.Controllers
         {
             int uploaderId = 0;
             var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (!string.IsNullOrEmpty(strData))
             {
                 var jwtHandler = new JwtSecurityTokenHandler();

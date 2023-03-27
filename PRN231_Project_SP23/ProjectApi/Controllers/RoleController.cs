@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Interfaces;
 using Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProjectApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RoleController : ControllerBase
     {
         private readonly IUserRepository _userRepository = new UserRepository();

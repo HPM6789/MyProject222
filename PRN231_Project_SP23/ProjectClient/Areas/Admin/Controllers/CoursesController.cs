@@ -9,6 +9,8 @@ using BusinessObjects.Models;
 using BusinessObjects.DTO;
 using System.Text.Json;
 using System.Text;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Http;
 
 namespace ProjectClient.Areas.Admin.Controllers
 {
@@ -27,8 +29,21 @@ namespace ProjectClient.Areas.Admin.Controllers
         // GET: Admin/Courses
         public async Task<IActionResult> Index()
         {
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData2))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             HttpResponseMessage response = await client.GetAsync(AdminApiUrl + "/GetAllCourse");
             string strData = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                if(response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("Error", "Home", new { statusCodes = response.StatusCode});
+                }
+            }
             List<CourseDto> courseDtos = JsonSerializer.Deserialize<List<CourseDto>>(strData, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -39,7 +54,20 @@ namespace ProjectClient.Areas.Admin.Controllers
         // GET: Admin/Courses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData2))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             HttpResponseMessage response = await client.GetAsync(AdminApiUrl + "/GetCourseById/" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("Error", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             string strData = await response.Content.ReadAsStringAsync();
             CourseDto courseDto = JsonSerializer.Deserialize<CourseDto>(strData, new JsonSerializerOptions
             {
@@ -70,10 +98,22 @@ namespace ProjectClient.Areas.Admin.Controllers
                     CourseName = courseDto.CourseName,
                     CourseCode = courseDto.CourseCode
                 };
+                var strData = HttpContext.Request.Cookies["jwtToken"];
+                if (string.IsNullOrEmpty(strData))
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
                 string jsonData = JsonSerializer.Serialize(course);
                 StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 var postTask = await client.PostAsync(AdminApiUrl + "/InsertCourse",content);
-
+                if (!postTask.IsSuccessStatusCode)
+                {
+                    if (postTask.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    {
+                        return RedirectToAction("Error", "Home", new { statusCodes = postTask.StatusCode });
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(courseDto);
@@ -82,7 +122,20 @@ namespace ProjectClient.Areas.Admin.Controllers
         // GET: Admin/Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData2))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             HttpResponseMessage response = await client.GetAsync(AdminApiUrl + "/GetCourseById/" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("Error", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             string strData = await response.Content.ReadAsStringAsync();
             CourseDto courseDto = JsonSerializer.Deserialize<CourseDto>(strData, new JsonSerializerOptions
             {
@@ -112,9 +165,22 @@ namespace ProjectClient.Areas.Admin.Controllers
                     CourseName = courseDto.CourseName,
                     CourseCode = courseDto.CourseCode
                 };
+                var strData2 = HttpContext.Request.Cookies["jwtToken"];
+                if (string.IsNullOrEmpty(strData2))
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
                 string jsonData = JsonSerializer.Serialize(course);
                 StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 var putTask = await client.PutAsync(AdminApiUrl + "/UpdateCourse", content);
+                if (!putTask.IsSuccessStatusCode)
+                {
+                    if (putTask.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    {
+                        return RedirectToAction("Error", "Home", new { statusCodes = putTask.StatusCode });
+                    }
+                }
                 if (putTask.IsSuccessStatusCode)
                 {
                     ViewData["msg"] = "success";
@@ -132,7 +198,20 @@ namespace ProjectClient.Areas.Admin.Controllers
         // GET: Admin/Courses/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData2))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             HttpResponseMessage response = await client.GetAsync(AdminApiUrl + "/GetCourseById/" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("Error", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             string strData = await response.Content.ReadAsStringAsync();
             CourseDto courseDto = JsonSerializer.Deserialize<CourseDto>(strData, new JsonSerializerOptions
             {
@@ -147,7 +226,20 @@ namespace ProjectClient.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             var deleteTask = await client.DeleteAsync(AdminApiUrl + "/DeleteCourse/" + id.ToString());
+            if (!deleteTask.IsSuccessStatusCode)
+            {
+                if (deleteTask.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("Error", "Home", new { statusCodes = deleteTask.StatusCode });
+                }
+            }
             if (deleteTask.IsSuccessStatusCode)
             {
                 ViewData["msg"] = "success";

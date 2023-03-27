@@ -14,7 +14,7 @@ namespace ProjectApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [AllowAnonymous]
+    
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository = new UserRepository();
@@ -26,12 +26,15 @@ namespace ProjectApi.Controllers
             _mapper = mapper;
             _configuration = configuration;
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult<IEnumerable<UserDto>> GetAllUsers() => _userRepository.GetAllUsers().Select(_mapper.Map<User, UserDto>).ToList();
         [HttpGet("uid")]
+        [Authorize(Roles = "Admin")]
         public ActionResult<UserDto> GetUserById(int uid) => (UserDto)_mapper.Map<UserDto>(_userRepository.GetUserById(uid));
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult PostUser(UserDto uDto)
         {
             //set product
@@ -41,6 +44,7 @@ namespace ProjectApi.Controllers
             return NoContent();
         }
         [HttpDelete("uid")]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteUser(int uid)
         {
             var user = _userRepository.GetUserById(uid);
@@ -49,6 +53,7 @@ namespace ProjectApi.Controllers
             return NoContent();
         }
         [HttpPut("uid")]
+        [Authorize(Roles = "Admin")]
         public IActionResult UpdateProduct(int uid, UserDto uDto)
         {
             var PTmp = _userRepository.GetUserById(uid);
@@ -57,6 +62,7 @@ namespace ProjectApi.Controllers
             _userRepository.UpdateProduct(u);
             return NoContent();
         }
+        [AllowAnonymous]
         [HttpGet("{email}/{password}")]
         public IActionResult Login(string email, string password)
         {

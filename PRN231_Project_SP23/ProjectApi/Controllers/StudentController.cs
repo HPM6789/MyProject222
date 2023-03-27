@@ -13,7 +13,7 @@ namespace ProjectApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    //[Authorize(Roles = "Student")]
+    [Authorize(Roles = "Student")]
 
     public class StudentController : Controller
     {

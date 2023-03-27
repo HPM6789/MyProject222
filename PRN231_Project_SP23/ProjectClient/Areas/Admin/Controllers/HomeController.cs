@@ -22,8 +22,21 @@ namespace ProjectClient.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData2))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             UserApiUrl = "http://localhost:5000/api/User/GetAllUsers";
             HttpResponseMessage response = await client.GetAsync(UserApiUrl);
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("Error", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             string strData = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions
             {
@@ -50,7 +63,20 @@ namespace ProjectClient.Areas.Admin.Controllers
                 ViewData["ErrorMessage"] = "Invalid ModelState";
                 return View(userDto);
             }
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             HttpResponseMessage getData = await client.PostAsJsonAsync<UserDto>("api/User/PostUser", userDto);
+            if (!getData.IsSuccessStatusCode)
+            {
+                if (getData.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("Error", "Home", new { statusCodes = getData.StatusCode });
+                }
+            }
             //getData.EnsureSuccessStatusCode();
             if (getData.IsSuccessStatusCode)
             {
@@ -80,7 +106,20 @@ namespace ProjectClient.Areas.Admin.Controllers
                 ViewData["ErrorMessage"] = "ModelState is invalid";
                 return View(userDto);
             }
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             HttpResponseMessage getData = await client.PutAsJsonAsync<UserDto>($"api/User/UpdateProduct/uid?uid={userDto.UserId}", userDto);
+            if (!getData.IsSuccessStatusCode)
+            {
+                if (getData.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("Error", "Home", new { statusCodes = getData.StatusCode });
+                }
+            }
             //getData.EnsureSuccessStatusCode();
             if (getData.IsSuccessStatusCode)
             {
@@ -97,9 +136,22 @@ namespace ProjectClient.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int uid)
         {
             string message = "";
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             HttpResponseMessage response = await client.DeleteAsync(
             $"api/User/DeleteUser/uid?uid={uid}");
 
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("Error", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction(nameof(Index));
@@ -113,6 +165,8 @@ namespace ProjectClient.Areas.Admin.Controllers
         private async Task<SelectList> listRole()
         {
             //lay list category
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             UserApiUrl = "http://localhost:5000/api/Role/GetAllRoles";
             HttpResponseMessage response = await client.GetAsync(UserApiUrl);
             string strData = await response.Content.ReadAsStringAsync();
@@ -127,6 +181,8 @@ namespace ProjectClient.Areas.Admin.Controllers
         {
             //
             UserApiUrl = $"http://localhost:5000/api/User/GetUserById/uid?uid={uid}";
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             HttpResponseMessage response = await client.GetAsync(UserApiUrl);
             string strData = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions
@@ -147,5 +203,10 @@ namespace ProjectClient.Areas.Admin.Controllers
 
         }
 
+        public async Task<IActionResult> Error(System.Net.HttpStatusCode statusCodes)
+        {
+            string status = statusCodes.ToString();
+            return View("Error", status);
+        }
     }
 }

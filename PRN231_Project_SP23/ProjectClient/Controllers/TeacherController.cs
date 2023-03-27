@@ -4,6 +4,7 @@ using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
@@ -23,7 +24,11 @@ namespace ProjectClient.Controllers
         public async Task<IActionResult> ListIndex()
         {
             int teacherId = 0;
-            var strData = Request.Cookies["jwtToken"];
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if(string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var jwtHandler = new JwtSecurityTokenHandler();
             var jwtToken = jwtHandler.ReadJwtToken(strData);
             string email = "";
@@ -35,7 +40,15 @@ namespace ProjectClient.Controllers
                     email = claim.Value;
                 }
             }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             HttpResponseMessage responseMessage2 = await client.GetAsync(TeacherApiUrl + "/GetTeacherByEmail/" + email);
+            if (!responseMessage2.IsSuccessStatusCode)
+            {
+                if (responseMessage2.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = responseMessage2.StatusCode });
+                }
+            }
             string strData2 = await responseMessage2.Content.ReadAsStringAsync();
             UserDto user = JsonSerializer.Deserialize<UserDto>(strData2, new JsonSerializerOptions
             {
@@ -43,6 +56,13 @@ namespace ProjectClient.Controllers
             });
             teacherId = user.UserId;
             HttpResponseMessage responseMessage = await client.GetAsync(TeacherApiUrl + "/GetAllCourses/" + teacherId.ToString());
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                if (responseMessage.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = responseMessage.StatusCode });
+                }
+            }
             string courseJson = await responseMessage.Content.ReadAsStringAsync();
             List<CourseDto> courses = JsonSerializer.Deserialize<List<CourseDto>>(courseJson, new JsonSerializerOptions
             {
@@ -54,7 +74,20 @@ namespace ProjectClient.Controllers
 
         public async Task<IActionResult> ListMaterialOfCourse(int id, string msg)
         {
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + "/GetAllMaterialsByCourse/" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             string materialJson = await response.Content.ReadAsStringAsync();
             List<MaterialDto> materialDtos = JsonSerializer.Deserialize<List<MaterialDto>>(materialJson, new JsonSerializerOptions
             {
@@ -70,6 +103,10 @@ namespace ProjectClient.Controllers
         {
             int uploaderId = 0;
             var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (!string.IsNullOrEmpty(strData))
             {
                 var jwtHandler = new JwtSecurityTokenHandler();
@@ -84,7 +121,8 @@ namespace ProjectClient.Controllers
                     }
                 }
             }
-            if(materials == null || materials.Count <= 0)
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
+            if (materials == null || materials.Count <= 0)
             {
                 return RedirectToAction("ListMaterialOfCourse", "Teacher", new { id = courseId });
             }
@@ -103,6 +141,13 @@ namespace ProjectClient.Controllers
             content.Add(new StringContent(uploaderId.ToString()), "uploaderId");
 
             var postTask = await client.PostAsync(TeacherApiUrl + "/UploadMaterial", content);
+            if (!postTask.IsSuccessStatusCode)
+            {
+                if (postTask.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = postTask.StatusCode });
+                }
+            }
             string msg = "";
             if (postTask.IsSuccessStatusCode)
             {
@@ -117,8 +162,20 @@ namespace ProjectClient.Controllers
 
         public async Task<IActionResult> DeleteMaterial(int materialId, int courseId)
         {
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             var deleteTask = await client.DeleteAsync(TeacherApiUrl + "/DeleteMaterial/" + materialId.ToString());
-
+            if (!deleteTask.IsSuccessStatusCode)
+            {
+                if (deleteTask.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = deleteTask.StatusCode });
+                }
+            }
             return RedirectToAction("ListMaterialOfCourse", "Teacher", new { id = courseId });
         }
         [HttpGet]
@@ -126,6 +183,11 @@ namespace ProjectClient.Controllers
         {
             int uploaderId = 0;
             var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             if (!string.IsNullOrEmpty(strData))
             {
                 var jwtHandler = new JwtSecurityTokenHandler();
@@ -149,6 +211,8 @@ namespace ProjectClient.Controllers
         }
         private async Task<SelectList> listCourseByUploaderId(int uploaderId)
         {
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             HttpResponseMessage responseMessage = await client.GetAsync(TeacherApiUrl + "/GetAllCourses/" + uploaderId.ToString());
             string strData = await responseMessage.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions
@@ -160,7 +224,20 @@ namespace ProjectClient.Controllers
         }
         public async Task<IActionResult> ListAssignmentByCourse(int tid, int cid)
         {
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData2))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + $"/ListAssignmentByCourse/{tid}/{cid}");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             var stream = await response.Content.ReadAsStreamAsync();
             string strData = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions
@@ -173,7 +250,20 @@ namespace ProjectClient.Controllers
 
         public async Task<IActionResult> ListSubmitAssignmentByAssId(int assId)
         {
+            var strData2 = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData2))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
             HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + $"/ListSubmitAssignmentByCourse/{assId}");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
             var stream = await response.Content.ReadAsStreamAsync();
             string strData = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions
