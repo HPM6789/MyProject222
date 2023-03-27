@@ -100,7 +100,6 @@ namespace ProjectApi.Controllers
         [HttpPost]
         public IActionResult UploadAssigmentNewest(IFormFile file, [FromForm] int courseId, [FromForm] int uploaderId)
         {
-            
             UploadAssignmentViewModel uploadAssignmentViewModel = new UploadAssignmentViewModel();
             uploadAssignmentViewModel.Assignment = file;
             uploadAssignmentViewModel.CourseId = courseId;

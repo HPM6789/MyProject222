@@ -6,7 +6,7 @@
 
 <h1>UploadAssignment</h1>
 
-<form asp-controller="Teacher" asp-action="UploadMaterial" enctype="multipart/form-data" method="post">
+<form asp-controller="Teacher" asp-action="UploadAssignmentPost" enctype="multipart/form-data" method="post">
     <div class="row mt-2">
         <div class="col-12">
             <label class="col-form-label">AssignmentName: </label>
@@ -38,7 +38,7 @@
     <input asp-for="UploaderId" class="form-control" hidden />
     <div class="row mt-2">
         <div class="col-12">
-            <button type="submit" class="btn btn-success">Upload Assignment</button>
+            <button type="Upload" class="btn btn-success">Upload Assignment</button>
         </div>
     </div>
 

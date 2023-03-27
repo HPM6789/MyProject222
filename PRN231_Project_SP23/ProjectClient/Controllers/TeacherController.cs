@@ -210,18 +210,24 @@ namespace ProjectClient.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> UploadAssignments(UploadAssignmentViewModel uploadAssignmentViewModel)
+        public async Task<IActionResult> UploadAssignmentPost(UploadAssignmentViewModel uploadAssignmentViewModel)
         {
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
             var content = new MultipartFormDataContent();
              using var stream = uploadAssignmentViewModel.Assignment.OpenReadStream();
                 var streamContent = new StreamContent(stream);
                 var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync());
-                content.Add(fileContent, "files", uploadAssignmentViewModel.Assignment.FileName);
+                content.Add(fileContent, "file", uploadAssignmentViewModel.Assignment.FileName);
             
             content.Add(new StringContent(uploadAssignmentViewModel.CourseId.ToString()), "courseId");
             content.Add(new StringContent(uploadAssignmentViewModel.UploaderId.ToString()), "uploaderId");
 
-            var postTask = await client.PostAsync(TeacherApiUrl + "/UploadAssignment", content);
+            var postTask = await client.PostAsync(TeacherApiUrl + "/UploadAssigmentNewest", content);
             if (!postTask.IsSuccessStatusCode)
             {
                 if (postTask.StatusCode == System.Net.HttpStatusCode.Forbidden)
@@ -238,7 +244,7 @@ namespace ProjectClient.Controllers
             {
                 msg = "failed";
             }
-            return View(uploadAssignmentViewModel);
+            return RedirectToAction(nameof(Index));
         }
         private async Task<SelectList> listCourseByUploaderId(int uploaderId)
         {

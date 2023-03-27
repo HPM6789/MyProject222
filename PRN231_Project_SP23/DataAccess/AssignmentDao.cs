@@ -49,7 +49,7 @@ namespace DataAccess
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             //get file extension
-            FileInfo fileInfo = new FileInfo(model.Assignment.FileName);
+            //FileInfo fileInfo = new FileInfo(model.Assignment.FileName);
             //set file name TeacherID_CourseID_FileName
             string fileName = model.UploaderId + "_" + model.CourseId + "_" + model.Assignment.FileName;
             //model.FileName + fileInfo.Extension;
