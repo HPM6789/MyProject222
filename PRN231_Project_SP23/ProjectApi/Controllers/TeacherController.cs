@@ -88,6 +88,8 @@ namespace ProjectApi.Controllers
             var material = _materialRepository.GetMaterialById(materialId);
             if (System.IO.File.Exists(material.Path + "/" + material.MaterialName))
             {
+                System.GC.Collect();
+                System.GC.WaitForPendingFinalizers();
                 System.IO.File.Delete(material.Path + "/" + material.MaterialName);
             }
             _materialRepository.DeleteMaterial(materialId);
