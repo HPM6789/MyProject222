@@ -209,6 +209,37 @@ namespace ProjectClient.Controllers
             model.UploaderId = uploaderId;
             return View(model);
         }
+        [HttpPost]
+        public async Task<IActionResult> UploadAssignments(UploadAssignmentViewModel uploadAssignmentViewModel)
+        {
+            var content = new MultipartFormDataContent();
+             using var stream = uploadAssignmentViewModel.Assignment.OpenReadStream();
+                var streamContent = new StreamContent(stream);
+                var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync());
+                content.Add(fileContent, "files", uploadAssignmentViewModel.Assignment.FileName);
+            
+            content.Add(new StringContent(uploadAssignmentViewModel.CourseId.ToString()), "courseId");
+            content.Add(new StringContent(uploadAssignmentViewModel.UploaderId.ToString()), "uploaderId");
+
+            var postTask = await client.PostAsync(TeacherApiUrl + "/UploadAssignment", content);
+            if (!postTask.IsSuccessStatusCode)
+            {
+                if (postTask.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = postTask.StatusCode });
+                }
+            }
+            string msg = "";
+            if (postTask.IsSuccessStatusCode)
+            {
+                msg = "success";
+            }
+            else
+            {
+                msg = "failed";
+            }
+            return View(uploadAssignmentViewModel);
+        }
         private async Task<SelectList> listCourseByUploaderId(int uploaderId)
         {
             var strData2 = HttpContext.Request.Cookies["jwtToken"];

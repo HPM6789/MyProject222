@@ -7,6 +7,7 @@ using BusinessObjects.Models;
 using BusinessObjects.DTO;
 using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.StaticFiles;
+using System.Net.Http.Headers;
 
 namespace ProjectApi.Controllers
 {
@@ -95,14 +96,20 @@ namespace ProjectApi.Controllers
             _materialRepository.DeleteMaterial(materialId);
             return Ok();
         }
+     
         [HttpPost]
-        public IActionResult UploadAssignment([FromForm] UploadAssignmentViewModel uploadAssignmentViewModel)
+        public IActionResult UploadAssigmentNewest(IFormFile file, [FromForm] int courseId, [FromForm] int uploaderId)
         {
+            
+            UploadAssignmentViewModel uploadAssignmentViewModel = new UploadAssignmentViewModel();
+            uploadAssignmentViewModel.Assignment = file;
+            uploadAssignmentViewModel.CourseId = courseId;
+            uploadAssignmentViewModel.UploaderId = uploaderId;
             _assignmentRespository.SaveAssignment(uploadAssignmentViewModel);
             return Ok();
         }
-        
-         [HttpGet("{teacherId}/{courseId}")]
+        //public IActionResult UploadAssignment([FromForm] UploadAssignmentViewModel uploadAssignmentViewModel)
+        [HttpGet("{teacherId}/{courseId}")]
         public ActionResult<IEnumerable<AssigmentDto>> ListAssignmentByCourse(int teacherId,int courseId)
         => _assignmentRespository.ListAssignmentByTeacherAndCourse(teacherId,courseId).Select(_mapper.Map<Assignment, AssigmentDto>).ToList();
 
