@@ -57,6 +57,8 @@ namespace DataAccess
                             transaction.Commit();
                             if (System.IO.File.Exists(materialpath2))
                             {
+                                System.GC.Collect();
+                                System.GC.WaitForPendingFinalizers();
                                 System.IO.File.Delete(materialpath2);
                             }
                             material.CopyTo(new FileStream(materialpath2, FileMode.Create));

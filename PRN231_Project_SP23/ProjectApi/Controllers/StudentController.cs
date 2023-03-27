@@ -36,6 +36,8 @@ namespace ProjectApi.Controllers
             string materialPath = material.Path + "/" + material.MaterialName;
             var fileExtension = Path.GetExtension(material.MaterialName);
             var contentType = Registry.GetValue(@"HKEY_CLASSES_ROOT\" + fileExtension, "Content Type", null) as string;
+            System.GC.Collect();
+            System.GC.WaitForPendingFinalizers();
             Byte[] b = System.IO.File.ReadAllBytes(materialPath);
             return File(b, contentType, material.MaterialName);
         }
