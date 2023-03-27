@@ -166,6 +166,43 @@ namespace ProjectClient.Controllers
             model.UploaderId = uploaderId;
             return View(model);
         }
+        [HttpPost]
+        public async Task<IActionResult> UploadSubmitPost(SubmitAssignmentViewModel submitAssignmentViewModel)
+        {
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
+            var content = new MultipartFormDataContent();
+            using var stream = submitAssignmentViewModel.SubmitFile.OpenReadStream();
+            var streamContent = new StreamContent(stream);
+            var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync());
+            content.Add(fileContent, "file", submitAssignmentViewModel.SubmitFile.FileName);
+
+            content.Add(new StringContent(submitAssignmentViewModel.AssignmentId.ToString()), "assignmentId");
+            content.Add(new StringContent(submitAssignmentViewModel.UploaderId.ToString()), "uploaderId");
+
+            var postTask = await client.PostAsync(StudentApiUrl + "/submitAssignment", content);
+            if (!postTask.IsSuccessStatusCode)
+            {
+                if (postTask.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = postTask.StatusCode });
+                }
+            }
+            string msg = "";
+            if (postTask.IsSuccessStatusCode)
+            {
+                msg = "success";
+            }
+            else
+            {
+                msg = "failed";
+            }
+            return RedirectToAction(nameof(ListCourse));
+        }
 
     }
 }

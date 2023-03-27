@@ -6,7 +6,7 @@
 
 <h1>Submit Assignment</h1>
 
-<form id="form1" action="http://localhost:5000/api/Student/submitAssignment" method="post" enctype="multipart/form-data">
+<form asp-controller="Student" asp-action="UploadSubmitPost" enctype="multipart/form-data" method="post">
     <div class="row mt-2">
         <div class="col-12">
             <label class="col-form-label">SubmitAssignmentName: </label>

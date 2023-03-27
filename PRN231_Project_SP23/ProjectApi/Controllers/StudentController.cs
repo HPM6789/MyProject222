@@ -91,11 +91,21 @@ namespace ProjectApi.Controllers
             var bytes = await System.IO.File.ReadAllBytesAsync(filepath);
             return File(bytes, contenttype, Path.GetFileName(filepath));
         }
+        //[HttpPost]
+        //public IActionResult submitAssignment([FromForm] SubmitAssignmentViewModel model)
+        //{
+        //    _submitAssignmentRespository.SubmitAssignment(model);
+        //    return Ok("Submit Sucessfully");
+        //}
         [HttpPost]
-        public IActionResult submitAssignment([FromForm] SubmitAssignmentViewModel model)
+        public IActionResult submitAssignment(IFormFile file, [FromForm] int assignmentId, [FromForm] int uploaderId)
         {
-            _submitAssignmentRespository.SubmitAssignment(model);
-            return Ok("Submit Sucessfully");
+            SubmitAssignmentViewModel submitAssignmentViewModel = new SubmitAssignmentViewModel();
+            submitAssignmentViewModel.SubmitFile = file;
+            submitAssignmentViewModel.AssignmentId = assignmentId;
+            submitAssignmentViewModel.UploaderId = uploaderId;
+            _submitAssignmentRespository.SubmitAssignment(submitAssignmentViewModel);
+            return Ok();
         }
     }
 }
